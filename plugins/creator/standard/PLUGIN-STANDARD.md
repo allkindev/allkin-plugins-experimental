@@ -197,6 +197,25 @@ Each entry becomes a field of the plugin's Configuration page.
   | `Allkin.core.sendToAgent(agentId, text)` / `Allkin.core.openSplit(agentId, "chat")` | direct an agent's conversation / show it on the right |
   | `Allkin.core.state`, `el`, `escapeHtml`, `copyToClipboard`, `formatSize`, `formatDateTime`… | the rest of the core |
 
+- A view **starts with Allkin's page bar**, the one header every page has. No title: the tab
+  carries it. The icon of the page first, then what the page has to say, its tools, and its
+  actions pushed to the right:
+
+  ```html
+  <div class="page-bar">
+    <span class="page-bar-icon" data-page-icon="my-kind" aria-hidden="true"></span>
+    <span class="page-bar-text">…</span>          <!-- optional: what is shown -->
+    <span class="page-bar-meta">…</span>          <!-- optional: a detail, dim -->
+    <div class="page-bar-actions">
+      <button type="button"><svg …/><span>Label</span></button>
+      <button type="button" class="page-bar-primary"><svg …/><span>Create</span></button>
+    </div>
+  </div>
+  ```
+
+  `data-page-icon` takes the kind of the tab: Allkin puts its icon there. The bar sizes its own
+  buttons — 28px on a desktop, 44px on a phone, where a button with an icon loses its label —
+  so give every button an icon, at most one `page-bar-primary`, and no size of your own.
 - Resolve a capability **when using it** (in the click handler), not at load:
   load order is not guaranteed. Its absence is a missing function, not an error.
 - **CSS**: prefix every class with the plugin's own short prefix (`.xx-…`);

@@ -5,7 +5,7 @@
     {
       "id": "creator",
       "name": "Creator",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "L'atelier de plugins : décris ce que tu veux, l'agent Creator écrit le plugin ou le service, et l'établi le contrôle, l'installe et le met au point avec toi.",
       "author": "Allkin",
       "permissions": [
@@ -96,8 +96,8 @@
         },
         {
           "path": "creator.css",
-          "size": 11179,
-          "sha256": "b25a239ed9fb81ed21af8a7ab8fe489d549c1d70ca51ba1817329067fa71215f"
+          "size": 11133,
+          "sha256": "8002860b517b12fe3944b67409e0bb3c740409ec3916a15bf866652edb4d32e0"
         },
         {
           "path": "creator.js",
@@ -117,12 +117,12 @@
         {
           "path": "plugin.json",
           "size": 4191,
-          "sha256": "14351e2ab9fd595c721bd3499aecdcb51508993f33b31b39e22c2b475031326f"
+          "sha256": "43ab66eede9844adc2d44aeb089a28c6b0fc03bbe02291c22a3b19403bf7e5c3"
         },
         {
           "path": "standard/PLUGIN-STANDARD.md",
-          "size": 13651,
-          "sha256": "21580e59022f121488c3e799d3c3500ae73eb4c0c5345c3928cf84ac2945b005"
+          "size": 14660,
+          "sha256": "08b82bbef7c91403bbc521be8cc0aa45f43d5837047247f9870eecfae478f69d"
         },
         {
           "path": "standard/SERVICE-STANDARD.md",
@@ -136,8 +136,8 @@
         },
         {
           "path": "view.html",
-          "size": 6564,
-          "sha256": "a7e2219b1ff256575af893378006e024523bfd19e5df1c0bb3657d562aea288f"
+          "size": 6422,
+          "sha256": "ac5129803f85d716e52e047f3df91417de974d00d20de4ad2fc9e89fd5e55c78"
         }
       ]
     },

@@ -4,10 +4,9 @@
 .cr-view { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; }
 .cr-view.hidden { display: none; }
 
-.cr-head { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
-.cr-logo { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 9px; color: #f59e0b; background: color-mix(in srgb, #f59e0b 14%, transparent); flex-shrink: 0; }
-.cr-logo svg { width: 1.1rem; height: 1.1rem; }
-.cr-title { margin: 0; font-size: var(--text-lg); font-weight: 700; }
+/* The header is Allkin's page bar (.page-bar): it sizes the icon and the
+   buttons. The view has no padding of its own, the bar brings it. */
+.cr-head.page-bar { margin: 0; padding: 0 var(--sp-4); }
 .cr-head-space { flex: 1; }
 
 .cr-btn { display: inline-flex; align-items: center; gap: 6px; height: 2rem; min-height: 0; padding: 0 0.8rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-raised); color: var(--text); font-size: var(--text-sm); font-weight: 500; box-shadow: none; cursor: pointer; white-space: nowrap; }
@@ -21,10 +20,13 @@
 
 /* Project picker */
 .cr-picker { position: relative; min-width: 0; }
-.cr-picker-btn { display: inline-flex; align-items: center; gap: var(--sp-2); height: 2rem; min-height: 0; max-width: 22rem; padding: 0 0.7rem; border-radius: 9px; border: 1px solid var(--border); background: var(--bg-raised); color: var(--text); font-size: var(--text-sm); font-weight: 600; box-shadow: none; cursor: pointer; }
-.cr-picker-btn:hover:not(:disabled), .cr-picker-btn[aria-expanded="true"] { background: color-mix(in srgb, var(--text) 6%, var(--bg-raised)); color: var(--text); }
+.cr-head .cr-picker-btn { display: inline-flex; align-items: center; gap: var(--sp-2); max-width: 22rem; padding: 0 0.6rem; border: 1px solid var(--border); background: var(--bg-raised); color: var(--text); font-size: var(--text-sm); font-weight: 600; box-shadow: none; cursor: pointer; }
+.cr-head .cr-picker-btn:hover:not(:disabled), .cr-head .cr-picker-btn[aria-expanded="true"] { background: color-mix(in srgb, var(--text) 6%, var(--bg-raised)); color: var(--text); }
 .cr-picker-btn:disabled { opacity: 0.5; cursor: default; }
-.cr-picker-btn svg { width: 0.9rem; height: 0.9rem; color: var(--text-dim); flex-shrink: 0; }
+.cr-head .cr-picker-btn svg { width: 0.9rem; height: 0.9rem; color: var(--text-dim); flex-shrink: 0; }
+/* The picker names the project shown: its label stays on a phone, where the
+   bar otherwise keeps only the icons. */
+.cr-head.page-bar .cr-picker .cr-picker-btn > .cr-picker-label { display: block; max-width: 45vw; }
 .cr-picker-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .cr-picker-menu { position: absolute; top: calc(100% + 4px); left: 0; z-index: 30; min-width: 17rem; max-height: 60vh; overflow-y: auto; padding: var(--sp-1); border: 1px solid var(--border); border-radius: 12px; background: var(--bg-raised); box-shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.45); }
 .cr-picker-menu.hidden { display: none; }
@@ -118,5 +120,5 @@
 .cr-seg-btn.is-active { background: var(--bg-raised); color: var(--text); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18); }
 
 @media (max-width: 720px) {
-  .cr-head, .cr-status, .cr-actions, .cr-directives, .cr-tabs, .cr-pane { padding-left: var(--sp-3); padding-right: var(--sp-3); }
+  .cr-head.page-bar, .cr-status, .cr-actions, .cr-directives, .cr-tabs, .cr-pane { padding-left: var(--sp-3); padding-right: var(--sp-3); }
 }
