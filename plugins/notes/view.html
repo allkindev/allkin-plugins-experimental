@@ -1,0 +1,77 @@
+<template data-slot="views">
+  <!-- Notes: folders on the left, the notes of the folder shown in the middle,
+       the note being written on the right. On a phone one pane at a time
+       (data-pane on the view), the back button of the page bar going up.
+       Icons are filled in by notes.js from data-nt-icon. -->
+  <div class="nt-view hidden" id="nt-view" data-pane="folders">
+    <header class="page-bar nt-head">
+      <span class="page-bar-icon" data-page-icon="notes" aria-hidden="true"></span>
+      <button type="button" class="nt-back" id="nt-back" data-nt-icon="caret-left" data-i18n-title="plugin.notes.back" data-i18n-aria-label="plugin.notes.back"></button>
+      <span class="page-bar-text" id="nt-where"></span>
+      <span class="page-bar-meta" id="nt-state" role="status"></span>
+      <label class="nt-search">
+        <span data-nt-icon="magnifying-glass" aria-hidden="true"></span>
+        <input type="search" id="nt-search" autocomplete="off" spellcheck="false" data-i18n-placeholder="plugin.notes.search.placeholder" data-i18n-aria-label="plugin.notes.search.placeholder" />
+      </label>
+      <div class="page-bar-actions">
+        <button type="button" id="nt-new-folder" data-nt-icon="folder-plus" data-nt-label="plugin.notes.folder.new" data-i18n-title="plugin.notes.folder.newTitle"></button>
+        <button type="button" id="nt-note-menu" data-nt-icon="dots-three" data-i18n-title="plugin.notes.note.actions" data-i18n-aria-label="plugin.notes.note.actions"></button>
+        <button type="button" class="page-bar-primary" id="nt-new-note" data-nt-icon="plus" data-nt-label="plugin.notes.note.new" data-i18n-title="plugin.notes.note.newTitle"></button>
+      </div>
+    </header>
+
+    <div class="nt-body">
+      <!-- Folders: the fixed entries, then the tree, then the bin. -->
+      <nav class="nt-folders" id="nt-folders" data-i18n-aria-label="plugin.notes.folders.label"></nav>
+
+      <!-- The notes of the folder shown: a list of rows, from edge to edge of its pane. -->
+      <section class="nt-list-pane">
+        <div class="nt-list-head">
+          <span class="nt-list-count" id="nt-count"></span>
+          <button type="button" class="nt-empty-trash hidden" id="nt-empty-trash" data-nt-icon="trash" data-nt-label="plugin.notes.trash.empty"></button>
+          <select id="nt-sort" data-i18n-aria-label="plugin.notes.sort.label" data-i18n-title="plugin.notes.sort.label">
+            <option value="modified" data-i18n="plugin.notes.sort.modified"></option>
+            <option value="created" data-i18n="plugin.notes.sort.created"></option>
+            <option value="title" data-i18n="plugin.notes.sort.title"></option>
+          </select>
+        </div>
+        <div class="nt-list" id="nt-list" role="list"></div>
+      </section>
+
+      <!-- The note: its title, the toolbar of the Markdown editor, the document. -->
+      <section class="nt-note" id="nt-note">
+        <div class="nt-note-empty" id="nt-note-empty">
+          <span data-nt-icon="note-blank" aria-hidden="true"></span>
+          <p data-i18n="plugin.notes.note.none"></p>
+        </div>
+        <div class="nt-note-body hidden" id="nt-note-body">
+          <input type="text" class="nt-title" id="nt-title" maxlength="120" autocomplete="off" data-i18n-placeholder="plugin.notes.title.placeholder" data-i18n-aria-label="plugin.notes.title.placeholder" />
+          <div class="nt-toolbar" id="nt-toolbar"></div>
+          <div class="nt-doc" id="nt-doc"></div>
+          <footer class="nt-foot" id="nt-foot"></footer>
+        </div>
+      </section>
+
+      <!-- The Markdown editor is not there (not installed, or its right not granted). -->
+      <div class="nt-missing hidden" id="nt-missing" role="status">
+        <span data-nt-icon="warning" aria-hidden="true"></span>
+        <p class="nt-missing-title" data-i18n="plugin.notes.missing.title"></p>
+        <p class="nt-missing-text" data-i18n="plugin.notes.missing.text"></p>
+        <button type="button" id="nt-missing-open" data-nt-label="plugin.notes.missing.open"></button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template data-slot="body">
+  <!-- The menu of a note or of a folder (right click, long press, ⋯). -->
+  <div class="nt-menu hidden" id="nt-menu" role="menu"></div>
+  <!-- "Move to…": the folders, one to pick. -->
+  <dialog class="nt-picker" id="nt-picker">
+    <p class="nt-picker-title" id="nt-picker-title"></p>
+    <div class="nt-picker-list" id="nt-picker-list"></div>
+    <div class="nt-picker-actions">
+      <button type="button" id="nt-picker-cancel" data-i18n="plugin.notes.cancel"></button>
+    </div>
+  </dialog>
+</template>

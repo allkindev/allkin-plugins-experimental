@@ -48,6 +48,7 @@ agent only exist once **every** declared right is granted.
   "description": "Une phrase.",        // must — one or two sentences, in French
   "author": "Moi",                     // should
   "homepage": "https://…",             // optional
+  "requires": ["markdown-editor"],     // optional — see below
   "permissions": [ … ],                // §4
   "settings": [ … ],                   // §5
   "service": { … },                    // §6
@@ -59,6 +60,14 @@ agent only exist once **every** declared right is granted.
 ```
 
 Unknown fields are ignored. A field of the wrong type refuses the manifest.
+
+**`requires`** lists the identifiers of the plugins this one cannot work without. Allkin installs
+those missing at the same time, after telling the user which ones; a required plugin that no
+repository offers refuses the installation. Installing is all Allkin does: the required plugin
+gets its rights on its own page, like any other. So still resolve its capability when using it
+(§8), and when it is absent say so in the view, with a way to the plugin's page
+(`Allkin.core.openPluginPage(id)`). Require a plugin rather than copying what it does; never
+require one for a convenience the plugin works without.
 
 ## 3. Version: `1.0.N`, nothing else
 

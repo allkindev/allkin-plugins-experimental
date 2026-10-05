@@ -5,7 +5,7 @@
     {
       "id": "creator",
       "name": "Creator",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "description": "L'atelier de plugins : décris ce que tu veux, l'agent Creator écrit le plugin ou le service, et l'établi le contrôle, l'installe et le met au point avec toi.",
       "author": "Allkin",
       "permissions": [
@@ -117,12 +117,12 @@
         {
           "path": "plugin.json",
           "size": 4191,
-          "sha256": "95e141d5563d5ca6d2ede73d0aaf9055b889f76d5dacddac0e929a1049342261"
+          "sha256": "e5f65800abf5cfbbbcddff8d8293a044f37957fbc51608cf42e5dfed625729e6"
         },
         {
           "path": "standard/PLUGIN-STANDARD.md",
-          "size": 17059,
-          "sha256": "c5ddd0c2c35f2f40e3ca7143d82c453ed7613a6967e80b5d76ac292c76ee0fdb"
+          "size": 17736,
+          "sha256": "28416398ac6107bfcb253ec792bc13a4f49097d469d09714a7f0cbf1a30ead00"
         },
         {
           "path": "standard/SERVICE-STANDARD.md",
@@ -330,6 +330,109 @@
           "path": "view.html",
           "size": 11142,
           "sha256": "105c46ec47a0fd59e5d501c7ff56be1fe96d5ed87055d2f4a1486765c6d00c69"
+        }
+      ]
+    },
+    {
+      "id": "notes",
+      "name": "Bloc-notes",
+      "version": "1.0.1",
+      "description": "Des notes rangées par dossiers, écrites dans l'éditeur markdown d'Allkin : recherche, épingles, corbeille, images. Chaque note est un fichier .md du dossier partagé, que les agents lisent et écrivent aussi.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "interface",
+          "reason": "Ajoute le bloc-notes à la page d'Allkin : son onglet et son entrée dans la liste des plugins."
+        }
+      ],
+      "service": false,
+      "web": false,
+      "ui": true,
+      "icon": "icon.svg",
+      "requires": [
+        "markdown-editor"
+      ],
+      "validation": {
+        "status": "pending"
+      },
+      "locales": {
+        "en": {
+          "name": "Notes",
+          "description": "Notes filed in folders, written in Allkin's Markdown editor: search, pins, bin, images. Each note is a .md file of the shared folder, which the agents read and write too.",
+          "permissions": {
+            "interface": "Adds the notepad to the Allkin page: its tab and its entry in the list of plugins."
+          }
+        },
+        "es": {
+          "name": "Bloc de notas",
+          "description": "Notas ordenadas en carpetas, escritas en el editor Markdown de Allkin: búsqueda, notas fijadas, papelera, imágenes. Cada nota es un archivo .md de la carpeta compartida, que los agentes también leen y escriben.",
+          "permissions": {
+            "interface": "Añade el bloc de notas a la página de Allkin: su pestaña y su entrada en la lista de plugins."
+          }
+        },
+        "de": {
+          "name": "Notizen",
+          "description": "Notizen in Ordnern, geschrieben im Markdown-Editor von Allkin: Suche, angeheftete Notizen, Papierkorb, Bilder. Jede Notiz ist eine .md-Datei im gemeinsamen Ordner, die auch die Agenten lesen und schreiben.",
+          "permissions": {
+            "interface": "Fügt der Allkin-Seite den Notizblock hinzu: seinen Tab und seinen Eintrag in der Plugin-Liste."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 4912,
+          "sha256": "95f3d6d95a3e98e7bbcd9222dc312335b6228ac16baa7f5051045264c356fd1f"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 4295,
+          "sha256": "a40760baafd02c3976b3ed6cdda50a7e2044b94a1def9aef4040688c476b989b"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 4657,
+          "sha256": "fc681807e6393c18834d998e31f7767e690eae14a282c0ed679be9f0ea33c54f"
+        },
+        {
+          "path": "README.md",
+          "size": 4833,
+          "sha256": "e2ae421fcda569f9b93469ace0f036110a45e301e0256c7f5f2efd7c9be0d6c8"
+        },
+        {
+          "path": "icon.svg",
+          "size": 396,
+          "sha256": "713c5c984016c67a0db57b2e4152218e536ebba23ff52aa3905058b4d73dac9e"
+        },
+        {
+          "path": "locales.js",
+          "size": 19867,
+          "sha256": "7c3f1cf4542433c2a9a61b44bfeabc78def7873baa3dc7d4bda3d0310914a4ae"
+        },
+        {
+          "path": "notes.css",
+          "size": 13237,
+          "sha256": "ec82b1e5db68e478057dcd49c1c6652775e3c619533f01bef82939d2bc0e84d0"
+        },
+        {
+          "path": "notes.js",
+          "size": 54770,
+          "sha256": "22c831bcfa19779b35889464b2fe7e6a928e546fb8b6c37c676724744609bdb4"
+        },
+        {
+          "path": "plugin.json",
+          "size": 1993,
+          "sha256": "04333ecc7abcb05fc1a12b7c1715460d3f703df99a8c8432c57f650a3d37ec36"
+        },
+        {
+          "path": "validation.json",
+          "size": 24,
+          "sha256": "fa4f05341a991367c51dd2d84214bcee5d6cb3a111e56f96ccb9a5a3c261ac65"
+        },
+        {
+          "path": "view.html",
+          "size": 4640,
+          "sha256": "24c5c8c0f67e344338facff2c019f3437522cd980f12ac9c777f1c1ece7657e1"
         }
       ]
     },

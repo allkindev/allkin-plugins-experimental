@@ -1,0 +1,147 @@
+/* Notes. Every class is prefixed .nt- ; sizes and colours are Allkin's tokens,
+   so the view follows the theme and the scale. */
+.nt-view { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; }
+.nt-view.hidden,
+.nt-view .hidden,
+.nt-menu.hidden { display: none; }
+.nt-head.page-bar { margin: 0; padding: 0 var(--sp-4); }
+.nt-head .nt-back { display: none; }
+#nt-state.is-error { color: var(--risk-high); }
+
+/* Search, in the page bar. */
+.nt-search { flex: 0 1 15rem; min-width: 6rem; margin-left: auto; display: flex; align-items: center; gap: var(--sp-2); height: var(--ctl-h); padding: 0 var(--sp-3); border: 1px solid var(--border); border-radius: var(--ctl-radius); background: var(--bg-alt); color: var(--text-faint); }
+.nt-search:focus-within { border-color: var(--accent); }
+.nt-search > span { display: inline-grid; place-items: center; flex-shrink: 0; }
+.nt-search svg { width: 14px; height: 14px; }
+.nt-search input,
+.nt-search input:focus { flex: 1; min-width: 0; min-height: 0; height: 100%; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; outline: none; color: var(--text); font-size: var(--text-sm); }
+.nt-search + .page-bar-actions { margin-left: 0; }
+
+/* Three panes side by side. */
+.nt-body { position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(11rem, 15rem) minmax(14rem, 20rem) minmax(0, 1fr); }
+.nt-folders,
+.nt-list-pane { min-width: 0; min-height: 0; border-right: 1px solid var(--border); }
+.nt-icon { display: inline-grid; place-items: center; flex-shrink: 0; }
+.nt-icon svg { width: 16px; height: 16px; }
+
+/* ---- Folders ---------------------------------------------------------- */
+.nt-folders { display: flex; flex-direction: column; padding: var(--sp-2) 0; overflow-y: auto; background: var(--bg-alt); }
+.nt-frow { display: flex; align-items: center; height: var(--nav-h); flex-shrink: 0; padding: 0 var(--sp-2) 0 calc(var(--sp-2) + var(--nt-depth, 0) * 14px); }
+.nt-frow.is-current { background: var(--accent-soft); }
+.nt-frow.is-drop { outline: 2px solid var(--accent); outline-offset: -2px; }
+.nt-frow-bin { margin-top: auto; }
+.nt-fsep { margin: var(--sp-3) 0 var(--sp-1); padding: 0 var(--sp-4); font-size: var(--text-2xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-faint); }
+.nt-caret-gap { width: 18px; flex-shrink: 0; }
+.nt-view button.nt-caret { width: 18px; height: 100%; min-height: 0; flex-shrink: 0; display: grid; place-items: center; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; color: var(--text-faint); transform: none; }
+.nt-view button.nt-caret:hover { color: var(--text); }
+.nt-caret svg { width: 12px; height: 12px; transition: transform 0.12s ease; }
+.nt-caret.is-open svg { transform: rotate(90deg); }
+.nt-view button.nt-fbtn { flex: 1; justify-content: flex-start; min-width: 0; height: 100%; min-height: 0; display: flex; align-items: center; gap: var(--sp-2); padding: 0 var(--sp-1); border: 0; border-radius: var(--ctl-radius); background: none; box-shadow: none; color: var(--text); font-size: var(--text-sm); font-weight: 400; text-align: left; transform: none; }
+.nt-frow.is-current .nt-fbtn { font-weight: 600; }
+.nt-fbtn .nt-icon { color: var(--text-dim); }
+.nt-frow.is-current .nt-fbtn .nt-icon { color: var(--accent); }
+.nt-fname { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-fcount { flex-shrink: 0; font-size: var(--text-2xs); color: var(--text-faint); font-variant-numeric: tabular-nums; }
+.nt-frow:not(.is-current):hover { background: color-mix(in srgb, var(--text) 5%, transparent); }
+
+/* ---- Notes list: rows from edge to edge of the pane -------------------- */
+.nt-list-pane { display: flex; flex-direction: column; }
+.nt-list-head { display: flex; align-items: center; gap: var(--sp-2); min-height: var(--row-h); padding: 0 var(--sp-3) 0 var(--sp-4); border-bottom: 1px solid var(--border); }
+.nt-list-count { flex: 1; min-width: 0; font-size: var(--text-xs); color: var(--text-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-list-head select { width: auto; max-width: 60%; font-size: var(--text-xs); }
+.nt-view button.nt-empty-trash { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); background: none; box-shadow: none; color: var(--risk-high); font-size: var(--text-xs); font-weight: 500; transform: none; }
+.nt-view button.nt-empty-trash:hover { background: var(--risk-high-soft); }
+.nt-empty-trash svg { width: 14px; height: 14px; }
+.nt-list { flex: 1; min-height: 0; overflow-y: auto; }
+.nt-list-empty { margin: 0; padding: var(--sp-5) var(--sp-4); font-size: var(--text-sm); color: var(--text-faint); text-align: center; }
+.nt-item { display: flex; flex-direction: column; gap: 3px; padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); cursor: pointer; outline: none; }
+.nt-item:hover { background: color-mix(in srgb, var(--text) 4%, transparent); }
+.nt-item:focus-visible { box-shadow: inset 0 0 0 2px var(--accent); }
+.nt-item.is-current { background: var(--accent-soft); }
+.nt-item-head { display: flex; align-items: center; gap: var(--sp-1); min-width: 0; }
+.nt-item-head .nt-icon { color: var(--text-dim); margin-right: 2px; }
+.nt-item-pin { display: inline-grid; place-items: center; flex-shrink: 0; color: var(--accent); }
+.nt-item-pin svg { width: 13px; height: 13px; }
+.nt-item-title { min-width: 0; font-size: var(--text-sm); font-weight: 600; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-item-sub { display: flex; gap: var(--sp-2); min-width: 0; font-size: var(--text-xs); color: var(--text-faint); }
+.nt-item-date { flex-shrink: 0; color: var(--text-dim); }
+.nt-item-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-item-where { display: flex; align-items: center; gap: var(--sp-1); min-width: 0; font-size: var(--text-2xs); color: var(--text-faint); }
+.nt-item-where svg { width: 12px; height: 12px; }
+.nt-item-where > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-item-trash { cursor: default; }
+.nt-item-actions { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-1); }
+.nt-view button.nt-item-btn { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); background: none; box-shadow: none; color: var(--text); font-size: var(--text-xs); font-weight: 500; transform: none; }
+.nt-view button.nt-item-btn:hover { background: color-mix(in srgb, var(--text) 6%, transparent); }
+.nt-view button.nt-item-btn.is-danger { color: var(--risk-high); }
+.nt-view button.nt-item-btn.is-danger:hover { background: var(--risk-high-soft); }
+.nt-item-btn svg { width: 14px; height: 14px; }
+
+/* ---- The note: title, toolbar, then the document from edge to edge ------ */
+.nt-note { min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+.nt-note-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sp-2); padding: var(--sp-5); color: var(--text-faint); text-align: center; }
+.nt-note-empty svg { width: 40px; height: 40px; }
+.nt-note-empty p { margin: 0; font-size: var(--text-sm); }
+.nt-note-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.nt-view input.nt-title,
+.nt-view input.nt-title:hover,
+.nt-view input.nt-title:focus { flex-shrink: 0; width: 100%; min-height: 0; padding: var(--sp-4) var(--sp-5) var(--sp-2); border: 0; border-radius: 0; background: none; box-shadow: none; outline: none; color: var(--text); font-size: var(--text-xl); font-weight: 700; }
+.nt-toolbar { flex-shrink: 0; display: flex; align-items: center; gap: var(--sp-1); min-width: 0; padding: var(--sp-1) var(--sp-4); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+.nt-toolbar::-webkit-scrollbar { display: none; }
+.nt-toolbar > * { flex-shrink: 0; }
+.nt-doc { flex: 1; min-height: 0; overflow: auto; padding: var(--sp-4) var(--sp-5) var(--sp-8); font-size: var(--text-md); line-height: 1.6; cursor: text; }
+.nt-foot { flex-shrink: 0; padding: var(--sp-1) var(--sp-4); border-top: 1px solid var(--border); font-size: var(--text-2xs); color: var(--text-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-foot:empty { display: none; }
+
+/* ---- The Markdown editor is missing ------------------------------------- */
+.nt-missing { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sp-2); padding: var(--sp-5); text-align: center; background: var(--bg); color: var(--text); }
+.nt-missing > span { color: var(--text-faint); }
+.nt-missing svg { width: 32px; height: 32px; }
+.nt-missing-title { margin: 0; font-size: var(--text-lg); font-weight: 600; }
+.nt-missing-text { margin: 0 0 var(--sp-2); max-width: 34rem; font-size: var(--text-sm); color: var(--text-dim); }
+
+/* ---- Menu (right click, long press, ⋯) ---------------------------------- */
+.nt-menu { position: fixed; z-index: 120; min-width: 13rem; max-width: calc(100vw - 16px); padding: var(--sp-1); border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg-raised); box-shadow: var(--shadow-md); }
+.nt-menu button.nt-menu-item { width: 100%; justify-content: flex-start; height: var(--nav-h); min-height: 0; display: flex; align-items: center; gap: var(--sp-2); padding: 0 var(--sp-3); border: 0; border-radius: var(--ctl-radius); background: none; box-shadow: none; color: var(--text); font-size: var(--text-sm); font-weight: 400; text-align: left; transform: none; }
+.nt-menu button.nt-menu-item:is(:hover, :focus-visible) { background: color-mix(in srgb, var(--text) 7%, transparent); outline: none; }
+.nt-menu button.nt-menu-item.is-danger { color: var(--risk-high); }
+.nt-menu-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+.nt-menu-sep { height: 1px; margin: var(--sp-1) 0; background: var(--border); }
+
+/* ---- "Move to…" ---------------------------------------------------------- */
+dialog.nt-picker { width: min(24rem, calc(100vw - 2rem)); max-height: min(32rem, 80vh); padding: 0; border: 1px solid var(--border); border-radius: var(--card-radius); background: var(--bg-raised); color: var(--text); box-shadow: var(--shadow-md); }
+dialog.nt-picker[open] { display: flex; flex-direction: column; }
+dialog.nt-picker::backdrop { background: rgb(0 0 0 / 0.45); }
+.nt-picker-title { margin: 0; padding: var(--sp-4) var(--sp-4) var(--sp-2); font-size: var(--text-md); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-picker-list { flex: 1; min-height: 0; overflow-y: auto; padding: 0 var(--sp-2); }
+.nt-picker button.nt-picker-row { width: 100%; justify-content: flex-start; height: var(--nav-h); min-height: 0; display: flex; align-items: center; gap: var(--sp-2); padding: 0 var(--sp-2) 0 calc(var(--sp-2) + var(--nt-depth, 0) * 16px); border: 0; border-radius: var(--ctl-radius); background: none; box-shadow: none; color: var(--text); font-size: var(--text-sm); font-weight: 400; text-align: left; transform: none; }
+.nt-picker button.nt-picker-row:hover:not(:disabled) { background: color-mix(in srgb, var(--text) 7%, transparent); }
+.nt-picker button.nt-picker-row:disabled { opacity: 0.45; cursor: default; }
+.nt-picker-row > span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nt-picker-actions { display: flex; justify-content: flex-end; padding: var(--sp-3) var(--sp-4); }
+.nt-picker-actions button { border: 1px solid var(--border); background: none; box-shadow: none; color: var(--text); transform: none; }
+.nt-picker-actions button:hover { background: color-mix(in srgb, var(--text) 6%, transparent); }
+
+/* ---- Phone: one pane at a time ------------------------------------------- */
+@media (max-width: 720px) {
+  .nt-head.page-bar { padding: 0 var(--sp-2); }
+  .nt-body { grid-template-columns: minmax(0, 1fr); }
+  .nt-folders,
+  .nt-list-pane { border-right: 0; }
+  .nt-view[data-pane="folders"] :is(.nt-list-pane, .nt-note),
+  .nt-view[data-pane="list"] :is(.nt-folders, .nt-note),
+  .nt-view[data-pane="note"] :is(.nt-folders, .nt-list-pane) { display: none; }
+  .nt-view:not([data-pane="folders"]) .nt-head .nt-back { display: inline-flex; }
+  .nt-view:not([data-pane="folders"]) .nt-head .page-bar-icon { display: none; }
+  /* The bar holds what the pane shown needs, nothing else. */
+  .nt-view:not([data-pane="note"]) :is(#nt-where, #nt-state, #nt-note-menu) { display: none; }
+  .nt-view[data-pane="note"] .nt-search { display: none; }
+  .nt-view:not([data-pane="folders"]) #nt-new-folder { display: none; }
+  .nt-search { flex: 1 1 auto; margin-left: 0; }
+  .nt-search input,
+  .nt-search input:focus { font-size: max(16px, var(--text-sm)); }
+  .nt-view input.nt-title,
+  .nt-view input.nt-title:focus { padding: var(--sp-3) var(--sp-4) var(--sp-2); font-size: max(16px, var(--text-xl)); }
+  .nt-doc { padding: var(--sp-3) var(--sp-4) var(--sp-8); }
+  .nt-list-head select { font-size: max(16px, var(--text-xs)); }
+}
