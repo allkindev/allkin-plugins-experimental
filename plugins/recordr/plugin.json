@@ -1,6 +1,6 @@
 {
   "name": "Recordr",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Écoute le micro, transcrit ce qui se dit au fil de la parole et distingue les interlocuteurs. La reconnaissance est faite par le service audio que tu choisis.",
   "author": "Allkin",
   "permissions": [

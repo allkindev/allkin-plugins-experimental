@@ -129,14 +129,24 @@ Each entry becomes a field of the plugin's Configuration page.
   |----------|---------|
   | `ALLKIN_PLUGIN_ID` | the identifier |
   | `ALLKIN_PLUGIN_DIR` | the plugin's folder — read-only by convention |
-  | `ALLKIN_PLUGIN_DATA` | the only folder to write in; survives updates |
+  | `ALLKIN_PLUGIN_DATA` | the plugin's private folder; survives updates |
+  | `ALLKIN_SHARE` | the folder shared by every agent and plugin (`~/.allkin/share`) |
+  | `ALLKIN_PLUGIN_SHARE` | the plugin's own folder in it, `share/<id>` — not created in advance |
   | `ALLKIN_PLUGIN_SETTINGS` | every setting, as JSON |
   | `PLUGIN_<KEY>` | each setting, upper-cased key |
   | `PORT`, `ALLKIN_PLUGIN_BASE_PATH` | when the plugin has a `web` part |
   | `ALLKIN_SOCKET`, `ALLKIN_DIR` | with the `agents` right |
 
-- **Write only in `ALLKIN_PLUGIN_DATA`**: the plugin's folder is replaced on
-  every update.
+- **Write only in `ALLKIN_PLUGIN_DATA` and `ALLKIN_SHARE`**: the plugin's
+  folder is replaced on every update.
+- The shared folder is common ground: every agent and every plugin reads,
+  writes and deletes there. A plugin that wants a folder of its own in it uses
+  `ALLKIN_PLUGIN_SHARE` — `share/<its id>`, never another name — and creates it
+  if it is missing. Agents may edit what is in it: read it as input that can
+  change, never as the plugin's private state (that is `ALLKIN_PLUGIN_DATA`).
+  `share/Trash/` is the bin of the shared folder.
+  An interface reaches the same folder with `Allkin.core.share` (same rules,
+  paths relative to the shared folder).
 - Allkin copies files, it never runs `npm install`: a plugin with npm
   dependencies installs them itself at first start, into `ALLKIN_PLUGIN_DATA`.
   Prefer no dependency at all.
@@ -195,6 +205,7 @@ Each entry becomes a field of the plugin's Configuration page.
   | `Allkin.core.confirm(options)` / `Allkin.core.prompt(options)` | the application's own dialogs, never the browser's |
   | `Allkin.core.runPluginAgent(id, prompt)` | hand a task to the plugin's agent (§9) |
   | `Allkin.core.sendToAgent(agentId, text)` / `Allkin.core.openSplit(agentId, "chat")` | direct an agent's conversation / show it on the right |
+  | `Allkin.core.share` | the shared folder (`~/.allkin/share`): `list(path)`, `read(path)`, `write(path, text)`, `mkdir`, `remove`, `move`, `copy`, `url(path, download)` — paths relative to it, the plugin's own folder being `<id>/` |
   | `Allkin.core.state`, `el`, `escapeHtml`, `copyToClipboard`, `formatSize`, `formatDateTime`… | the rest of the core |
 
 - A view **starts with Allkin's page bar**, the one header every page has. No title: the tab
@@ -216,6 +227,17 @@ Each entry becomes a field of the plugin's Configuration page.
   `data-page-icon` takes the kind of the tab: Allkin puts its icon there. The bar sizes its own
   buttons — 28px on a desktop, 44px on a phone, where a button with an icon loses its label —
   so give every button an icon, at most one `page-bar-primary`, and no size of your own.
+- **Icons are Phosphor glyphs, light weight** (phosphoricons.com, MIT), like the rest of Allkin —
+  never a hand-drawn path, never another set. Inline, in a 24-unit wrapper:
+  `<svg viewBox="0 0 24 24"><g transform="scale(0.09375)" fill="currentColor" stroke="none"><path d="…"/></g></svg>`
+  with the `d` of `@phosphor-icons/core/assets/light/<name>-light.svg`. `icon.svg` may use
+  `viewBox="0 0 256 256"` and the path directly.
+- **A large edit field runs from edge to edge** of the view, at every screen size: no margin around
+  it, no rounded corner, no side border — give the view no side padding around it. To keep one
+  framed on purpose, put `data-edit-zone="reduced"` on it and write the framed rule under
+  `[data-edit-zone="reduced"]`.
+- **Sizes come from Allkin's tokens**, not from numbers: `--ctl-h` (buttons, fields), `--ctl-radius`,
+  `--row-h`, `--nav-h`, `--card-radius`. A button or a field you do not size already follows them.
 - Resolve a capability **when using it** (in the click handler), not at load:
   load order is not guaranteed. Its absence is a missing function, not an error.
 - **CSS**: prefix every class with the plugin's own short prefix (`.xx-…`);
@@ -302,6 +324,7 @@ it. An author never writes `validated`.
 7. `locales` holds `en`, `es`, `de`; an interface has `locales.js` with keys
    under `plugin.<id>.`.
 8. Interface scripts are wrapped and use only `window.Allkin`.
-9. The service writes only in `ALLKIN_PLUGIN_DATA`, listens on `127.0.0.1`,
+9. The service writes only in `ALLKIN_PLUGIN_DATA` and the shared folder (its
+   own folder there being `share/<id>`), listens on `127.0.0.1`,
    stops on `SIGTERM`.
 10. The version was raised by 1 for this batch of changes.

@@ -1,0 +1,151 @@
+<template data-slot="views">
+  <!-- Image editor: one tab per image (byPath). The page bar names the image
+       and carries the document actions; the tools sit in a rail on the left
+       (a strip at the bottom on a phone), their options in a strip above the
+       canvas. Icons are filled in by editor.js from data-ie-icon. -->
+  <div class="ie-view hidden" id="ie-view">
+    <header class="page-bar ie-head">
+      <span class="page-bar-icon" data-page-icon="image-editor" aria-hidden="true"></span>
+      <span class="page-bar-text" id="ie-name"></span>
+      <span class="page-bar-meta" id="ie-meta"></span>
+      <div class="page-bar-actions">
+        <button type="button" id="ie-undo" data-ie-icon="arrow-counter-clockwise" data-i18n-title="plugin.image-editor.undo" data-i18n-aria-label="plugin.image-editor.undo"></button>
+        <button type="button" id="ie-redo" data-ie-icon="arrow-clockwise" data-i18n-title="plugin.image-editor.redo" data-i18n-aria-label="plugin.image-editor.redo"></button>
+        <button type="button" id="ie-open" data-ie-icon="folder-open" data-ie-label="plugin.image-editor.open" data-i18n-title="plugin.image-editor.openTitle"></button>
+        <button type="button" id="ie-copy" data-ie-icon="copy" data-ie-label="plugin.image-editor.copy" data-i18n-title="plugin.image-editor.copyTitle"></button>
+        <button type="button" id="ie-export" data-ie-icon="download-simple" data-ie-label="plugin.image-editor.export" data-i18n-title="plugin.image-editor.exportTitle"></button>
+        <button type="button" class="page-bar-primary" id="ie-save" data-ie-icon="floppy-disk" data-ie-label="plugin.image-editor.save"></button>
+      </div>
+    </header>
+
+    <div class="ie-body">
+      <nav class="ie-rail" id="ie-rail" role="toolbar" data-i18n-aria-label="plugin.image-editor.tools">
+        <button type="button" class="ie-tool" data-tool="select" data-ie-icon="cursor" data-i18n-title="plugin.image-editor.tool.select"></button>
+        <button type="button" class="ie-tool" data-tool="crop" data-ie-icon="crop" data-i18n-title="plugin.image-editor.tool.crop"></button>
+        <span class="ie-rail-sep"></span>
+        <button type="button" class="ie-tool" data-tool="arrow" data-ie-icon="arrow-up-right" data-i18n-title="plugin.image-editor.tool.arrow"></button>
+        <button type="button" class="ie-tool" data-tool="line" data-ie-icon="line-segment" data-i18n-title="plugin.image-editor.tool.line"></button>
+        <button type="button" class="ie-tool" data-tool="rect" data-ie-icon="rectangle" data-i18n-title="plugin.image-editor.tool.rect"></button>
+        <button type="button" class="ie-tool" data-tool="ellipse" data-ie-icon="circle" data-i18n-title="plugin.image-editor.tool.ellipse"></button>
+        <button type="button" class="ie-tool" data-tool="pen" data-ie-icon="pencil-simple" data-i18n-title="plugin.image-editor.tool.pen"></button>
+        <button type="button" class="ie-tool" data-tool="marker" data-ie-icon="highlighter" data-i18n-title="plugin.image-editor.tool.marker"></button>
+        <button type="button" class="ie-tool" data-tool="text" data-ie-icon="text-t" data-i18n-title="plugin.image-editor.tool.text"></button>
+        <button type="button" class="ie-tool" data-tool="number" data-ie-icon="number-circle-one" data-i18n-title="plugin.image-editor.tool.number"></button>
+        <button type="button" class="ie-tool" data-tool="pixelate" data-ie-icon="checkerboard" data-i18n-title="plugin.image-editor.tool.pixelate"></button>
+        <span class="ie-rail-sep"></span>
+        <button type="button" class="ie-op" id="ie-rotate-left" data-ie-icon="arrow-arc-left" data-i18n-title="plugin.image-editor.op.rotateLeft"></button>
+        <button type="button" class="ie-op" id="ie-rotate-right" data-ie-icon="arrow-arc-right" data-i18n-title="plugin.image-editor.op.rotateRight"></button>
+        <button type="button" class="ie-op" id="ie-flip-h" data-ie-icon="flip-horizontal" data-i18n-title="plugin.image-editor.op.flipH"></button>
+        <button type="button" class="ie-op" id="ie-flip-v" data-ie-icon="flip-vertical" data-i18n-title="plugin.image-editor.op.flipV"></button>
+        <button type="button" class="ie-op" id="ie-resize" data-ie-icon="resize" data-i18n-title="plugin.image-editor.op.resize"></button>
+      </nav>
+
+      <div class="ie-main">
+        <!-- Options of the tool in use: colour, thickness, size, fill — and
+             the crop's own buttons while a crop is drawn. -->
+        <div class="ie-options" id="ie-options">
+          <div class="ie-swatches" id="ie-swatches" role="radiogroup" data-i18n-aria-label="plugin.image-editor.color"></div>
+          <label class="ie-field ie-field-color" data-i18n-title="plugin.image-editor.customColor">
+            <input type="color" id="ie-color" />
+          </label>
+          <label class="ie-field" id="ie-width-field">
+            <span data-i18n="plugin.image-editor.width"></span>
+            <input type="range" id="ie-width" min="1" max="60" step="1" />
+            <output id="ie-width-out"></output>
+          </label>
+          <label class="ie-field" id="ie-size-field">
+            <span data-i18n="plugin.image-editor.fontSize"></span>
+            <input type="range" id="ie-size" min="8" max="200" step="1" />
+            <output id="ie-size-out"></output>
+          </label>
+          <label class="ie-field ie-check" id="ie-fill-field">
+            <input type="checkbox" id="ie-fill" />
+            <span data-i18n="plugin.image-editor.fill"></span>
+          </label>
+          <label class="ie-field ie-check" id="ie-textbg-field">
+            <input type="checkbox" id="ie-textbg" />
+            <span data-i18n="plugin.image-editor.textBackground"></span>
+          </label>
+          <span class="ie-options-space"></span>
+          <span class="ie-hint" id="ie-hint"></span>
+          <button type="button" class="ie-small hidden" id="ie-crop-cancel" data-ie-icon="x" data-ie-label="common.cancel"></button>
+          <button type="button" class="ie-small ie-small-main hidden" id="ie-crop-apply" data-ie-icon="check" data-ie-label="plugin.image-editor.cropApply"></button>
+          <button type="button" class="ie-small hidden" id="ie-delete" data-ie-icon="trash" data-ie-label="plugin.image-editor.deleteShape"></button>
+          <span class="ie-zoom">
+            <button type="button" class="ie-small" id="ie-zoom-out" data-ie-icon="magnifying-glass-minus" data-i18n-title="plugin.image-editor.zoomOut"></button>
+            <button type="button" class="ie-small ie-zoom-value" id="ie-zoom-fit" data-i18n-title="plugin.image-editor.zoomFit"></button>
+            <button type="button" class="ie-small" id="ie-zoom-in" data-ie-icon="magnifying-glass-plus" data-i18n-title="plugin.image-editor.zoomIn"></button>
+          </span>
+        </div>
+
+        <!-- The canvas runs from edge to edge: it is the edit zone. -->
+        <div class="ie-stage" id="ie-stage">
+          <canvas class="ie-canvas hidden" id="ie-canvas"></canvas>
+          <div class="ie-empty hidden" id="ie-empty">
+            <p data-i18n="plugin.image-editor.empty"></p>
+            <button type="button" id="ie-empty-open" data-ie-icon="folder-open" data-ie-label="plugin.image-editor.openDevice"></button>
+          </div>
+          <p class="ie-loading hidden" id="ie-loading" data-i18n="common.loading"></p>
+        </div>
+      </div>
+    </div>
+    <input type="file" id="ie-file" accept="image/*" hidden />
+  </div>
+</template>
+
+<template data-slot="body">
+  <!-- Resize: width, height, percentage, ratio kept. -->
+  <div class="ie-dialog-backdrop hidden" id="ie-resize-dialog" role="dialog" aria-modal="true" aria-labelledby="ie-resize-title">
+    <form class="ie-dialog" id="ie-resize-form" novalidate>
+      <h2 class="ie-dialog-title" id="ie-resize-title" data-i18n="plugin.image-editor.resize.title"></h2>
+      <p class="ie-dialog-text" id="ie-resize-current"></p>
+      <div class="ie-dialog-grid">
+        <label><span data-i18n="plugin.image-editor.resize.width"></span><input type="number" id="ie-resize-w" min="1" max="20000" step="1" /></label>
+        <label><span data-i18n="plugin.image-editor.resize.height"></span><input type="number" id="ie-resize-h" min="1" max="20000" step="1" /></label>
+        <label><span data-i18n="plugin.image-editor.resize.percent"></span><input type="number" id="ie-resize-p" min="1" max="1000" step="1" /></label>
+      </div>
+      <label class="ie-check"><input type="checkbox" id="ie-resize-ratio" checked /><span data-i18n="plugin.image-editor.resize.keepRatio"></span></label>
+      <div class="ie-dialog-presets" id="ie-resize-presets"></div>
+      <div class="ie-dialog-actions">
+        <button type="button" class="secondary" id="ie-resize-cancel" data-i18n="common.cancel"></button>
+        <button type="submit" id="ie-resize-ok" data-i18n="plugin.image-editor.resize.apply"></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Export: format, quality (the compression), name, the weight it will
+       have — then download, or save as a new file. -->
+  <div class="ie-dialog-backdrop hidden" id="ie-export-dialog" role="dialog" aria-modal="true" aria-labelledby="ie-export-title">
+    <form class="ie-dialog" id="ie-export-form" novalidate>
+      <h2 class="ie-dialog-title" id="ie-export-title" data-i18n="plugin.image-editor.exportDialog.title"></h2>
+      <label class="ie-dialog-row"><span data-i18n="plugin.image-editor.exportDialog.name"></span><input type="text" id="ie-export-name" maxlength="200" spellcheck="false" /></label>
+      <label class="ie-dialog-row"><span data-i18n="plugin.image-editor.exportDialog.format"></span>
+        <select id="ie-export-format">
+          <option value="png">PNG</option>
+          <option value="jpeg">JPEG</option>
+          <option value="webp">WebP</option>
+        </select>
+      </label>
+      <label class="ie-dialog-row" id="ie-export-quality-row"><span data-i18n="plugin.image-editor.exportDialog.quality"></span>
+        <input type="range" id="ie-export-quality" min="10" max="100" step="1" />
+        <output id="ie-export-quality-out"></output>
+      </label>
+      <label class="ie-dialog-row"><span data-i18n="plugin.image-editor.exportDialog.maxSide"></span>
+        <select id="ie-export-max">
+          <option value="0" data-i18n="plugin.image-editor.exportDialog.original"></option>
+          <option value="3840">3840 px</option>
+          <option value="2560">2560 px</option>
+          <option value="1920">1920 px</option>
+          <option value="1280">1280 px</option>
+          <option value="800">800 px</option>
+        </select>
+      </label>
+      <p class="ie-dialog-text" id="ie-export-estimate" aria-live="polite"></p>
+      <div class="ie-dialog-actions">
+        <button type="button" class="secondary" id="ie-export-cancel" data-i18n="common.cancel"></button>
+        <button type="button" class="secondary" id="ie-export-download" data-i18n="common.download"></button>
+        <button type="submit" id="ie-export-save" data-i18n="plugin.image-editor.exportDialog.saveCopy"></button>
+      </div>
+    </form>
+  </div>
+</template>

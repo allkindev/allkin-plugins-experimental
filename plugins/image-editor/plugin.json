@@ -1,0 +1,52 @@
+{
+  "name": "Éditeur d'images",
+  "version": "1.0.1",
+  "description": "Recadrer, réduire, compresser et annoter une image : flèches, formes, texte, étapes numérotées, surligneur, pixelisation. Pour les images des agents, du dossier partagé ou de cet appareil.",
+  "author": "Allkin",
+  "permissions": [
+    {
+      "id": "interface",
+      "reason": "Ajoute l'éditeur d'images à la page d'Allkin. Avec ta session, il lit les images des agents et du dossier partagé, et y enregistre ce que tu modifies — la version précédente part dans la corbeille."
+    }
+  ],
+  "settings": [],
+  "ui": {
+    "apiVersion": 1,
+    "provides": [
+      "image-editor"
+    ],
+    "html": [
+      "view.html"
+    ],
+    "styles": [
+      "editor.css"
+    ],
+    "scripts": [
+      "locales.js",
+      "editor.js"
+    ]
+  },
+  "locales": {
+    "en": {
+      "name": "Image editor",
+      "description": "Crop, resize, compress and annotate an image: arrows, shapes, text, numbered steps, highlighter, pixelation. For the images of agents, of the shared folder or of this device.",
+      "permissions": {
+        "interface": "Adds the image editor to the Allkin page. With your session, it reads the images of agents and of the shared folder, and saves what you change there — the previous version goes to the bin."
+      }
+    },
+    "es": {
+      "name": "Editor de imágenes",
+      "description": "Recortar, reducir, comprimir y anotar una imagen: flechas, formas, texto, pasos numerados, marcador, pixelado. Para las imágenes de los agentes, de la carpeta compartida o de este dispositivo.",
+      "permissions": {
+        "interface": "Añade el editor de imágenes a la página de Allkin. Con tu sesión, lee las imágenes de los agentes y de la carpeta compartida, y guarda allí lo que cambias: la versión anterior va a la papelera."
+      }
+    },
+    "de": {
+      "name": "Bildeditor",
+      "description": "Ein Bild zuschneiden, verkleinern, komprimieren und beschriften: Pfeile, Formen, Text, nummerierte Schritte, Textmarker, Verpixelung. Für die Bilder der Agenten, des freigegebenen Ordners oder dieses Geräts.",
+      "permissions": {
+        "interface": "Fügt den Bildeditor der Allkin-Seite hinzu. Mit deiner Sitzung liest er die Bilder der Agenten und des freigegebenen Ordners und speichert dort, was du änderst – die vorherige Version landet im Papierkorb."
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
     {
       "id": "creator",
       "name": "Creator",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "L'atelier de plugins : décris ce que tu veux, l'agent Creator écrit le plugin ou le service, et l'établi le contrôle, l'installe et le met au point avec toi.",
       "author": "Allkin",
       "permissions": [
@@ -101,13 +101,13 @@
         },
         {
           "path": "creator.js",
-          "size": 24463,
-          "sha256": "cc7c97eabddcb53dc746aebc72a6cdd747e93a45c84ecd11041e9a7d58876345"
+          "size": 25776,
+          "sha256": "7d6b80d8ee8b6313f9bb5e5449219ee0beed99c0b4d1b9f7eb322a0499213fe2"
         },
         {
           "path": "icon.svg",
-          "size": 268,
-          "sha256": "41cb8697ad753d1539b31b1f76036b4080029f905a75d8532c6d866b6dffb98b"
+          "size": 741,
+          "sha256": "d2d031432183533d638a7f091ebcd9e6e9075f12126417295f2d25707142e21d"
         },
         {
           "path": "locales.js",
@@ -117,12 +117,12 @@
         {
           "path": "plugin.json",
           "size": 4191,
-          "sha256": "43ab66eede9844adc2d44aeb089a28c6b0fc03bbe02291c22a3b19403bf7e5c3"
+          "sha256": "a00d3bf84c01d6b329b50ff9d67b0bf8729557f47883c650a4987df5c43e7fd0"
         },
         {
           "path": "standard/PLUGIN-STANDARD.md",
-          "size": 14660,
-          "sha256": "08b82bbef7c91403bbc521be8cc0aa45f43d5837047247f9870eecfae478f69d"
+          "size": 16685,
+          "sha256": "f6a656da55b5c10171629e2dad27fa5c3d8aed19e02eb3307034787f27acc9c9"
         },
         {
           "path": "standard/SERVICE-STANDARD.md",
@@ -136,15 +136,15 @@
         },
         {
           "path": "view.html",
-          "size": 6422,
-          "sha256": "ac5129803f85d716e52e047f3df91417de974d00d20de4ad2fc9e89fd5e55c78"
+          "size": 7023,
+          "sha256": "761cf67534129f8ffcabfb4eece0a774472b803cc52720b948f4f43e520b47d9"
         }
       ]
     },
     {
       "id": "home-assistant-bridge",
       "name": "Pont Home Assistant",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Tes agents réagissent à la maison : un événement Home Assistant (une porte qui s'ouvre, un capteur, un bouton) réveille l'agent de ton choix avec le message que tu as écrit, et sa réponse revient en notification dans Home Assistant.",
       "author": "Allkin",
       "permissions": [
@@ -218,13 +218,13 @@
         },
         {
           "path": "icon.svg",
-          "size": 257,
-          "sha256": "37be8095cf69f17171b75579be112d6244df090e81b3dffd2cff549d0223e478"
+          "size": 523,
+          "sha256": "04933aab4a0ea741a0ebabd0983a8ffc0bb73f56d89171d5327a6e906ed2d2a0"
         },
         {
           "path": "plugin.json",
           "size": 8849,
-          "sha256": "84a43c55170598c41748f6589b90f12856ff2028a3b4aecd48f4dc15302d23ab"
+          "sha256": "4f80c035882fb7fe2f05270d1265c59ef891b100cf8a288ecc644c09f811943f"
         },
         {
           "path": "validation.json",
@@ -234,9 +234,109 @@
       ]
     },
     {
+      "id": "image-editor",
+      "name": "Éditeur d'images",
+      "version": "1.0.1",
+      "description": "Recadrer, réduire, compresser et annoter une image : flèches, formes, texte, étapes numérotées, surligneur, pixelisation. Pour les images des agents, du dossier partagé ou de cet appareil.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "interface",
+          "reason": "Ajoute l'éditeur d'images à la page d'Allkin. Avec ta session, il lit les images des agents et du dossier partagé, et y enregistre ce que tu modifies — la version précédente part dans la corbeille."
+        }
+      ],
+      "service": false,
+      "web": false,
+      "ui": true,
+      "icon": "icon.svg",
+      "validation": {
+        "status": "pending"
+      },
+      "locales": {
+        "en": {
+          "name": "Image editor",
+          "description": "Crop, resize, compress and annotate an image: arrows, shapes, text, numbered steps, highlighter, pixelation. For the images of agents, of the shared folder or of this device.",
+          "permissions": {
+            "interface": "Adds the image editor to the Allkin page. With your session, it reads the images of agents and of the shared folder, and saves what you change there — the previous version goes to the bin."
+          }
+        },
+        "es": {
+          "name": "Editor de imágenes",
+          "description": "Recortar, reducir, comprimir y anotar una imagen: flechas, formas, texto, pasos numerados, marcador, pixelado. Para las imágenes de los agentes, de la carpeta compartida o de este dispositivo.",
+          "permissions": {
+            "interface": "Añade el editor de imágenes a la página de Allkin. Con tu sesión, lee las imágenes de los agentes y de la carpeta compartida, y guarda allí lo que cambias: la versión anterior va a la papelera."
+          }
+        },
+        "de": {
+          "name": "Bildeditor",
+          "description": "Ein Bild zuschneiden, verkleinern, komprimieren und beschriften: Pfeile, Formen, Text, nummerierte Schritte, Textmarker, Verpixelung. Für die Bilder der Agenten, des freigegebenen Ordners oder dieses Geräts.",
+          "permissions": {
+            "interface": "Fügt den Bildeditor der Allkin-Seite hinzu. Mit deiner Sitzung liest er die Bilder der Agenten und des freigegebenen Ordners und speichert dort, was du änderst – die vorherige Version landet im Papierkorb."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 3681,
+          "sha256": "13e4361a5699e98460f83bf9126e2d43c089734582898864f495c32566f08021"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 3138,
+          "sha256": "a9b0a5ae9dc6a06f12d7ebf4dde5517672d224553fb9b226281583aec96e31ce"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 3389,
+          "sha256": "f1d802c34d078eaf6d3d7ef22289295aec6c443851ce2cd6d036bd1be0938f64"
+        },
+        {
+          "path": "README.md",
+          "size": 3519,
+          "sha256": "e83ccd093e20572181caccb1a6d703ac4ce308478e9923a3bf42ded34f7bef06"
+        },
+        {
+          "path": "editor.css",
+          "size": 7027,
+          "sha256": "d60853600aa94a7f4605ecc798cd02c93e705bc864bd827543c0e6f534b45dca"
+        },
+        {
+          "path": "editor.js",
+          "size": 56916,
+          "sha256": "4ffd0499df657a046c63dc446aaf5d804db353dee11b93c477dedd6610447ecc"
+        },
+        {
+          "path": "icon.svg",
+          "size": 526,
+          "sha256": "ed71dc7a4252f647ac2e5468c4476f5c766c9e532b210cdc51eaa96faad6f077"
+        },
+        {
+          "path": "locales.js",
+          "size": 22474,
+          "sha256": "1f727e26004a49321cab79b509266e54a46a9477af76012d9b23bdd58a077b1f"
+        },
+        {
+          "path": "plugin.json",
+          "size": 2405,
+          "sha256": "ba5bfb18632a82ff0ca0c07b9ef1a9ed194ff0431834164539081431bc51917b"
+        },
+        {
+          "path": "validation.json",
+          "size": 24,
+          "sha256": "fa4f05341a991367c51dd2d84214bcee5d6cb3a111e56f96ccb9a5a3c261ac65"
+        },
+        {
+          "path": "view.html",
+          "size": 11142,
+          "sha256": "105c46ec47a0fd59e5d501c7ff56be1fe96d5ed87055d2f4a1486765c6d00c69"
+        }
+      ]
+    },
+    {
       "id": "recordr",
       "name": "Recordr",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Écoute le micro, transcrit ce qui se dit au fil de la parole et distingue les interlocuteurs. La reconnaissance est faite par le service audio que tu choisis.",
       "author": "Allkin",
       "permissions": [
@@ -298,13 +398,13 @@
         },
         {
           "path": "icon.svg",
-          "size": 277,
-          "sha256": "bfcdff8a5fdb47d10c723e5b25dd6a650c634a8eaa0781e230c320384842fa20"
+          "size": 500,
+          "sha256": "0083e408f3934c2da9c1b61ff4dd82bad407d099c715a1c3199cef9b598bd1e4"
         },
         {
           "path": "plugin.json",
           "size": 5920,
-          "sha256": "151f21a257d36cd3e1024a71be4e63ac389e013c6c522e53cae3ddec3c5e17d9"
+          "sha256": "29dac3e50ef55bcc3d17cd8ef2ec6550b2684aadb12100d856044eacaeb25cd4"
         },
         {
           "path": "server.mjs",
@@ -351,7 +451,7 @@
     {
       "id": "telegram-bridge",
       "name": "Pont Telegram",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Parle à tes agents depuis Telegram : un bot écoute en continu, relaie chaque message à l'agent de ton choix et renvoie sa réponse. Les commandes à valider arrivent avec deux boutons.",
       "author": "Allkin",
       "permissions": [
@@ -432,13 +532,13 @@
         },
         {
           "path": "icon.svg",
-          "size": 222,
-          "sha256": "9d323978c2971ad5becf9fdf3bb1afdb471571d762395def0339e1a244925fd9"
+          "size": 654,
+          "sha256": "212ed0f3b8bee5d286407fee64ce75e9e3efaeabb4a646597091941c3d9d1353"
         },
         {
           "path": "plugin.json",
           "size": 7582,
-          "sha256": "7dba9f8072ce6564e646a2581185752b1d286a2b0d3d9e6bb8490d8e40288970"
+          "sha256": "60da22b87288f74cb39e87bb0a78f0d01d7828531dea6e995b990bfc4ace231d"
         },
         {
           "path": "validation.json",
