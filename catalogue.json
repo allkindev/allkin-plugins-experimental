@@ -5,7 +5,7 @@
     {
       "id": "creator",
       "name": "Creator",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "description": "L'atelier de plugins : décris ce que tu veux, l'agent Creator écrit le plugin ou le service, et l'établi le contrôle, l'installe et le met au point avec toi.",
       "author": "Allkin",
       "permissions": [
@@ -117,12 +117,12 @@
         {
           "path": "plugin.json",
           "size": 4191,
-          "sha256": "a00d3bf84c01d6b329b50ff9d67b0bf8729557f47883c650a4987df5c43e7fd0"
+          "sha256": "95e141d5563d5ca6d2ede73d0aaf9055b889f76d5dacddac0e929a1049342261"
         },
         {
           "path": "standard/PLUGIN-STANDARD.md",
-          "size": 16685,
-          "sha256": "f6a656da55b5c10171629e2dad27fa5c3d8aed19e02eb3307034787f27acc9c9"
+          "size": 17059,
+          "sha256": "c5ddd0c2c35f2f40e3ca7143d82c453ed7613a6967e80b5d76ac292c76ee0fdb"
         },
         {
           "path": "standard/SERVICE-STANDARD.md",
@@ -544,6 +544,118 @@
           "path": "validation.json",
           "size": 26,
           "sha256": "d4d1dcecd7ac05002f48dd7b057271ec05a27be70b8ea64ae76119d3f90f8e2c"
+        }
+      ]
+    },
+    {
+      "id": "web-browser",
+      "name": "Navigateur web",
+      "version": "1.0.1",
+      "description": "Ouvre les sites web dans des onglets d'Allkin : un lien cliqué n'emmène plus hors de l'application. Un site qui refuse d'être affiché ainsi est signalé, avec de quoi l'ouvrir dans le navigateur.",
+      "author": "Allkin",
+      "permissions": [
+        {
+          "id": "interface",
+          "reason": "Ajoute le navigateur à la page d'Allkin : ses onglets, et l'ouverture des liens externes dans ces onglets."
+        },
+        {
+          "id": "network",
+          "reason": "Son service lit les en-têtes d'un site avant de l'afficher, pour savoir s'il accepte d'être montré dans Allkin. Il n'en garde rien et n'écoute que sur la machine (127.0.0.1)."
+        }
+      ],
+      "service": true,
+      "web": true,
+      "ui": true,
+      "icon": "icon.svg",
+      "validation": {
+        "status": "pending"
+      },
+      "locales": {
+        "en": {
+          "name": "Web browser",
+          "description": "Opens websites in tabs of Allkin: a link clicked no longer takes you out of the application. A site that refuses to be shown this way is flagged, with a way to open it in the browser.",
+          "permissions": {
+            "interface": "Adds the browser to the Allkin page: its tabs, and opening external links in them.",
+            "network": "Its service reads the headers of a site before showing it, to know whether it accepts to be shown in Allkin. It keeps nothing and listens on this machine only (127.0.0.1)."
+          }
+        },
+        "es": {
+          "name": "Navegador web",
+          "description": "Abre los sitios web en pestañas de Allkin: un enlace ya no te saca de la aplicación. Un sitio que no acepta mostrarse así se indica, con una forma de abrirlo en el navegador.",
+          "permissions": {
+            "interface": "Añade el navegador a la página de Allkin: sus pestañas y la apertura de enlaces externos en ellas.",
+            "network": "Su servicio lee las cabeceras de un sitio antes de mostrarlo, para saber si acepta mostrarse en Allkin. No guarda nada y solo escucha en esta máquina (127.0.0.1)."
+          }
+        },
+        "de": {
+          "name": "Webbrowser",
+          "description": "Öffnet Websites in Tabs von Allkin: Ein angeklickter Link führt nicht mehr aus der Anwendung. Eine Website, die so nicht angezeigt werden will, wird gemeldet – mit der Möglichkeit, sie im Browser zu öffnen.",
+          "permissions": {
+            "interface": "Fügt den Browser der Allkin-Seite hinzu: seine Tabs und das Öffnen externer Links darin.",
+            "network": "Sein Dienst liest die Header einer Website, bevor er sie anzeigt, um zu wissen, ob sie in Allkin angezeigt werden darf. Er speichert nichts und lauscht nur auf dieser Maschine (127.0.0.1)."
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "README-DE.md",
+          "size": 2681,
+          "sha256": "89affac78774bc495811815e8dee883744fc1acf980f411d36c960965d1bb044"
+        },
+        {
+          "path": "README-EN.md",
+          "size": 2386,
+          "sha256": "b04b15f217ded46d38127b3a9fb6633067f027b15b7d04029ac7cfaa4acdf19c"
+        },
+        {
+          "path": "README-ES.md",
+          "size": 2639,
+          "sha256": "22f92174ddb7d3193408109a7509b4a2e4c5303b2e25951d65706a87d0c3eb3b"
+        },
+        {
+          "path": "README.md",
+          "size": 2699,
+          "sha256": "29af54a782da9b9b445b08c74d05cced1bfed825860e923d0effb4de320f4ca3"
+        },
+        {
+          "path": "browser.css",
+          "size": 2236,
+          "sha256": "9946afef364cf531e75cb3e94b91eea1b0c267933e23e47268e8cc245edf9155"
+        },
+        {
+          "path": "browser.js",
+          "size": 13944,
+          "sha256": "9fdf0e074202b66e98fdf9fcb6b6c935e6fb081007298275e0553dbbce3c7a2e"
+        },
+        {
+          "path": "icon.svg",
+          "size": 974,
+          "sha256": "c8f1306421fa6b118b120f6feee84efdd1cda28adf533552345344e13a983fed"
+        },
+        {
+          "path": "locales.js",
+          "size": 5057,
+          "sha256": "49c93eef07caa34c80b63e2e988bd16d9dfd5b54ad9d4ff04ab2893a9cae432a"
+        },
+        {
+          "path": "plugin.json",
+          "size": 3792,
+          "sha256": "70e09e9a0475e009d657e686d863d8e74f99a609ac73edc045eeab4c156bae35"
+        },
+        {
+          "path": "server.mjs",
+          "size": 4775,
+          "sha256": "7de322fefd5592161a15364b704c7e94e9d3ffdd5b1efe3883a2196b12ba5d84"
+        },
+        {
+          "path": "validation.json",
+          "size": 24,
+          "sha256": "fa4f05341a991367c51dd2d84214bcee5d6cb3a111e56f96ccb9a5a3c261ac65"
+        },
+        {
+          "path": "view.html",
+          "size": 2145,
+          "sha256": "c4251e7c0eb1a812c9f8cfd93aa0bdaa0063ff3442aefbcc19e6291781df16bb"
         }
       ]
     }

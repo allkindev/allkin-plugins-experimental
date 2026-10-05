@@ -1,6 +1,6 @@
 {
   "name": "Creator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "L'atelier de plugins : décris ce que tu veux, l'agent Creator écrit le plugin ou le service, et l'établi le contrôle, l'installe et le met au point avec toi.",
   "author": "Allkin",
   "permissions": [

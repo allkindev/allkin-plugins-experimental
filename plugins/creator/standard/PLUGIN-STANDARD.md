@@ -236,6 +236,10 @@ Each entry becomes a field of the plugin's Configuration page.
   it, no rounded corner, no side border — give the view no side padding around it. To keep one
   framed on purpose, put `data-edit-zone="reduced"` on it and write the framed rule under
   `[data-edit-zone="reduced"]`.
+- **A table runs from edge to edge** of the view too — a list of rows, with or without columns:
+  no side margin, no rounded corner, no side border; its first and last cells keep the view's side
+  padding inside them, so their text stays aligned with the rest of the page. `data-edit-zone="reduced"`
+  keeps one framed. A panel among others on a dashboard is not a table.
 - **Sizes come from Allkin's tokens**, not from numbers: `--ctl-h` (buttons, fields), `--ctl-radius`,
   `--row-h`, `--nav-h`, `--card-radius`. A button or a field you do not size already follows them.
 - Resolve a capability **when using it** (in the click handler), not at load:
