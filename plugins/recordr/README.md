@@ -24,8 +24,8 @@ par `http://192.168.x.x:9191` ne l'obtiendra pas : il faut passer par son adress
 ## Ce que fait la page
 
 - **Écouter / Pause / Arrêter** — le texte arrive mot à mot. Les mots en gris ne sont pas encore
-  définitifs : le service peut les corriger pendant une seconde ou deux. La pastille à côté des
-  boutons dit où en est l'écoute, avec sa durée et le niveau du micro. **Pause** garde la connexion
+  définitifs : le service peut les corriger pendant une seconde ou deux. L'enregistreur, en bas de la page, dit où en est l'écoute, montre le son que le micro entend et
+  compte sa durée ; la barre d'espace met en pause et reprend. **Pause** garde la connexion
   (et la numérotation des voix) ; après dix minutes de pause elle est relâchée, et la reprise en
   ouvre une nouvelle.
 - **L'écoute continue en arrière-plan** — on peut passer à un autre onglet d'Allkin, à un autre
@@ -39,8 +39,17 @@ par `http://192.168.x.x:9191` ne l'obtiendra pas : il faut passer par son adress
 - **Interlocuteurs** — le service distingue les voix ; il ne sait pas qui parle. Un clic sur
   « Interlocuteur 1 », dans le texte ou dans le panneau de droite, lui donne son vrai nom partout.
   Le panneau montre le temps de parole de chacun et sa part du total.
-- **Titre**, **Copier**, **Télécharger (.md)** — la transcription s'exporte en Markdown, avec les noms
-  et l'horodatage de chaque prise de parole.
+- **Titre**, **Copier**, **Exporter** — la transcription s'exporte en Markdown (`.md`), en texte brut
+  (`.txt`) ou en sous-titres (`.srt`), avec les noms et l'horaire de chaque prise de parole. La
+  petite icône qui apparaît au survol d'une intervention copie celle-ci seule.
+- **Rechercher** — la loupe de la barre (ou Ctrl/⌘ + F) cherche dans la transcription affichée :
+  les résultats sont surlignés, Entrée passe au suivant.
+- **Corriger** — une fois l'écoute terminée, un clic dans un texte permet de le corriger ; Entrée
+  garde la correction, Échap l'abandonne. Un texte vidé retire l'intervention.
+- **Horaires** — l'horloge de la barre affiche ou masque l'horaire de chaque intervention, à l'écran
+  comme dans les exports.
+- **Panneaux** — l'historique et les interlocuteurs se replient par leur bouton, pour ne garder que
+  le texte. Le menu ⋯ commence une nouvelle transcription ou supprime celle affichée.
 - **Historique** — chaque écoute est enregistrée sur la machine d'Allkin, au fil de l'eau
   (`plugin-data/recordr/data/transcripts/`). On la retrouve par son titre, on la rouvre, on la
   renomme, on la supprime.

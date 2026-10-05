@@ -24,8 +24,8 @@ seine HTTPS-Adresse (`tailscale serve`, Caddy…). Die Seite sagt es, wenn das d
 ## Was die Seite tut
 
 - **Zuhören / Pause / Stoppen** — der Text kommt Wort für Wort. Graue Wörter sind noch nicht
-  endgültig: Der Dienst kann sie ein, zwei Sekunden lang korrigieren. Die Anzeige neben den
-  Schaltflächen sagt, wie es um das Zuhören steht, mit Dauer und Mikrofonpegel. **Pause** hält die
+  endgültig: Der Dienst kann sie ein, zwei Sekunden lang korrigieren. Der Rekorder am unteren Rand der Seite sagt, wie es um das Zuhören steht, zeigt den Ton, den das
+  Mikrofon hört, und zählt die Dauer; die Leertaste pausiert und setzt fort. **Pause** hält die
   Verbindung (und die Nummerierung der Stimmen); nach zehn Minuten Pause wird sie freigegeben, das
   Fortsetzen öffnet eine neue.
 - **Das Zuhören läuft im Hintergrund weiter** — man kann zu einem anderen Allkin-Tab, einem anderen
@@ -39,8 +39,17 @@ seine HTTPS-Adresse (`tailscale serve`, Caddy…). Die Seite sagt es, wenn das d
 - **Sprecher** — der Dienst unterscheidet die Stimmen; wer spricht, weiß er nicht. Ein Klick auf
   „Sprecher 1“, im Text oder im Bereich rechts, gibt ihm überall den richtigen Namen. Der Bereich
   zeigt die Redezeit jedes Sprechers und seinen Anteil.
-- **Titel**, **Kopieren**, **Herunterladen (.md)** — das Transkript wird als Markdown exportiert,
-  mit den Namen und der Zeit jedes Redebeitrags.
+- **Titel**, **Kopieren**, **Exportieren** — das Transkript wird als Markdown (`.md`), reiner Text
+  (`.txt`) oder Untertitel (`.srt`) exportiert, mit den Namen und der Zeit jedes Redebeitrags. Das
+  kleine Symbol, das beim Überfahren eines Beitrags erscheint, kopiert nur diesen.
+- **Suchen** — die Lupe der Leiste (oder Strg/⌘ + F) durchsucht das angezeigte Transkript: Treffer
+  werden hervorgehoben, Enter springt zum nächsten.
+- **Korrigieren** — nach dem Zuhören lässt sich ein Text per Klick korrigieren; Enter übernimmt die
+  Korrektur, Esc verwirft sie. Ein geleerter Text entfernt den Beitrag.
+- **Zeiten** — die Uhr der Leiste blendet die Zeit jedes Beitrags ein oder aus, auf dem Bildschirm
+  und in den Exporten.
+- **Seitenleisten** — Verlauf und Sprecher lassen sich über ihre Schaltfläche einklappen, damit nur
+  der Text bleibt. Das Menü ⋯ beginnt ein neues Transkript oder löscht das angezeigte.
 - **Verlauf** — jede Sitzung wird laufend auf der Maschine von Allkin gespeichert
   (`plugin-data/recordr/data/transcripts/`). Sie lässt sich über ihren Titel finden, wieder öffnen,
   umbenennen, löschen.

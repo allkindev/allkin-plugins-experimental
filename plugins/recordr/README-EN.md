@@ -24,8 +24,8 @@ opened through `http://192.168.x.x:9191` will not get it: go through its HTTPS a
 ## What the page does
 
 - **Start listening / Pause / Stop** — the text arrives word by word. Grey words are not final yet:
-  the service may correct them for a second or two. The chip next to the buttons tells where the
-  listening stands, with its duration and the microphone's level. **Pause** keeps the connection
+  the service may correct them for a second or two. The recorder, at the bottom of the page, tells where the listening stands, shows the sound the
+  microphone hears and counts its duration; the space bar pauses and resumes. **Pause** keeps the connection
   (and the numbering of the voices); after ten minutes of pause it is let go, and resuming opens a
   new one.
 - **Listening goes on in the background** — you can switch to another Allkin tab, another browser
@@ -38,8 +38,17 @@ opened through `http://192.168.x.x:9191` will not get it: go through its HTTPS a
 - **Speakers** — the service tells the voices apart; it does not know who is speaking. A click on
   “Speaker 1”, in the text or in the panel on the right, gives the real name everywhere. The panel
   shows each one's speaking time and share of the total.
-- **Title**, **Copy**, **Download (.md)** — the transcript exports as Markdown, with the names and
-  the time of each turn.
+- **Title**, **Copy**, **Export** — the transcript exports as Markdown (`.md`), plain text (`.txt`)
+  or subtitles (`.srt`), with the names and the time of each turn. The small icon that appears
+  when hovering a turn copies that turn alone.
+- **Search** — the magnifying glass of the bar (or Ctrl/⌘ + F) searches the transcript shown:
+  matches are highlighted, Enter goes to the next one.
+- **Correct** — once the listening is over, a click in a text lets you correct it; Enter keeps the
+  correction, Escape drops it. A text emptied removes the turn.
+- **Times** — the clock of the bar shows or hides the time of each turn, on screen and in the
+  exports.
+- **Panels** — the history and the speakers fold away with their button, to keep only the text.
+  The ⋯ menu starts a new transcript or deletes the one shown.
 - **History** — every session is saved on Allkin's machine as it goes
   (`plugin-data/recordr/data/transcripts/`). It can be found by its title, opened again, renamed,
   deleted.

@@ -62,6 +62,24 @@
     toastTimer = setTimeout(() => node.classList.remove("visible"), 2500);
   }
 
+  // ---- What the browser remembers of the page: panels, timestamps ----
+
+  const PREFS_KEY = "allkin.plugin.recordr";
+  const prefs = (() => {
+    try {
+      return { history: true, speakers: true, times: true, ...JSON.parse(localStorage.getItem(PREFS_KEY) ?? "{}") };
+    } catch {
+      return { history: true, speakers: true, times: true };
+    }
+  })();
+  function savePrefs() {
+    try {
+      localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    } catch {
+      // No storage: the page opens with its defaults next time.
+    }
+  }
+
   // ---- State ----
 
   const emptyTranscript = () => ({ id: null, title: "", startedAt: null, durationMs: 0, language: "", speakers: {}, segments: [] });
@@ -132,7 +150,7 @@
   function speakerButton(key) {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "lt-speaker";
+    button.className = "rc-speaker";
     button.title = t("speaker.rename");
     button.textContent = speakerName(key);
     button.addEventListener("click", () => renameSpeaker(key, button));
@@ -141,7 +159,7 @@
 
   function avatar(key) {
     const badge = document.createElement("span");
-    badge.className = "lt-avatar";
+    badge.className = "rc-avatar";
     badge.textContent = speakerBadge(key);
     return badge;
   }
@@ -149,7 +167,7 @@
   function renameSpeaker(key, button) {
     const input = document.createElement("input");
     input.type = "text";
-    input.className = "lt-speaker-input";
+    input.className = "rc-speaker-input";
     input.maxLength = 60;
     input.value = state.transcript.speakers[key] ?? "";
     input.placeholder = t("speaker.default", { n: speakerNumber(key) });
@@ -198,33 +216,83 @@
 
   function buildTurn(speaker, startMs) {
     const turn = document.createElement("article");
-    turn.className = "lt-turn";
+    turn.className = "rc-turn";
     turn.style.setProperty("--speaker", speakerColor(speaker));
 
     const head = document.createElement("header");
-    head.className = "lt-turn-head";
+    head.className = "rc-turn-head";
     const time = document.createElement("time");
-    time.className = "lt-time";
+    time.className = "rc-time";
     time.textContent = clock(startMs);
-    head.append(speakerButton(speaker), time);
+    const copy = document.createElement("button");
+    copy.type = "button";
+    copy.className = "rc-tool rc-turn-copy";
+    copy.title = t("turn.copy");
+    copy.setAttribute("aria-label", t("turn.copy"));
+    copy.innerHTML = '<svg><use href="#i-copy"/></svg>';
+    copy.addEventListener("click", () => void copyText(turn.querySelector(".rc-text").textContent.trim(), "turn.copied"));
+    head.append(speakerButton(speaker), time, copy);
 
     const text = document.createElement("p");
-    text.className = "lt-text";
+    text.className = "rc-text";
+    bindTurnEditing(turn, text);
     const body = document.createElement("div");
-    body.className = "lt-turn-body";
+    body.className = "rc-turn-body";
     body.append(head, text);
     turn.append(avatar(speaker), body);
     return turn;
   }
 
   function setTurnText(turn, settled, pending = "") {
-    const text = turn.querySelector(".lt-text");
+    const text = turn.querySelector(".rc-text");
     text.textContent = settled.trimStart();
     if (pending) {
       const tail = document.createElement("span");
-      tail.className = "lt-interim";
+      tail.className = "rc-interim";
       tail.textContent = settled ? pending : pending.trimStart();
       text.appendChild(tail);
+    }
+  }
+
+  /**
+   * A settled turn can be corrected once the listening is over: a click in its
+   * text, Enter or a click elsewhere keeps the change, Escape drops it. A turn
+   * emptied is removed.
+   */
+  function bindTurnEditing(turn, text) {
+    const segmentOf = () => state.transcript.segments[blocks.indexOf(turn)];
+    text.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        text.blur();
+      } else if (event.key === "Escape") {
+        const segment = segmentOf();
+        if (segment) text.textContent = segment.text.trimStart();
+        text.blur();
+      }
+    });
+    text.addEventListener("blur", () => {
+      const segment = segmentOf();
+      if (!segment || !text.isContentEditable) return;
+      const next = text.textContent.replace(/\s+/g, " ").trim();
+      if (next === segment.text.trim()) return;
+      if (next) segment.text = ` ${next}`;
+      else state.transcript.segments.splice(blocks.indexOf(turn), 1);
+      markDirty();
+      order = [];
+      for (const kept of state.transcript.segments) noteSpeaker(kept.speaker);
+      renderAll();
+    });
+  }
+
+  /** Turns are editable while nothing is being listened to. */
+  function refreshEditable() {
+    const editable = state.phase === "idle";
+    for (const block of blocks) {
+      const text = block.querySelector(".rc-text");
+      if (editable) text.setAttribute("contenteditable", "plaintext-only");
+      else text.removeAttribute("contenteditable");
+      text.spellcheck = false;
     }
   }
 
@@ -262,7 +330,7 @@
     for (let i = blocks.length; i < segments.length; i++) {
       if (segments[i].gap) {
         const gap = document.createElement("div");
-        gap.className = "lt-gap";
+        gap.className = "rc-gap";
         gap.textContent = t("gap.label");
         transcriptEl.appendChild(gap);
       }
@@ -289,6 +357,8 @@
     if (state.following) scrollToLatest();
     refreshLatestButton();
     refreshButtons();
+    refreshEditable();
+    if (find.open) runFind(false);
   }
 
   transcriptEl.addEventListener("scroll", () => {
@@ -319,7 +389,7 @@
   function renderSpeakers() {
     const list = $("speakers");
     // Not while a name is being typed there: the field would vanish under the cursor.
-    if (list.contains(document.activeElement) && document.activeElement.classList.contains("lt-speaker-input")) return;
+    if (list.contains(document.activeElement) && document.activeElement.classList.contains("rc-speaker-input")) return;
 
     const totals = new Map(order.map((key) => [key, { spokenMs: 0, words: 0 }]));
     for (const segment of state.transcript.segments) {
@@ -334,24 +404,66 @@
     const sum = [...totals.values()].reduce((all, total) => all + weight(total), 0);
 
     list.replaceChildren();
+    const shares = $("share");
+    shares.replaceChildren();
+    shares.classList.toggle("hidden", sum === 0);
     for (const key of order) {
       const total = totals.get(key);
       const percent = sum ? Math.round((weight(total) / sum) * 100) : 0;
-      const card = document.createElement("li");
-      card.className = "lt-speaker-card";
-      card.style.setProperty("--speaker", speakerColor(key));
+      const row = document.createElement("li");
+      row.className = "rc-speaker-row";
+      row.style.setProperty("--speaker", speakerColor(key));
       const share = document.createElement("span");
-      share.className = "lt-speaker-time";
-      share.textContent = timed ? t("speakers.share", { time: clock(total.spokenMs), percent }) : `${percent} %`;
-      const bar = document.createElement("span");
-      bar.className = "lt-speaker-bar";
-      const fill = document.createElement("i");
-      fill.style.width = `${percent}%`;
-      bar.appendChild(fill);
-      card.append(avatar(key), speakerButton(key), share, bar);
-      list.appendChild(card);
+      share.className = "rc-speaker-percent";
+      share.textContent = t("speakers.percent", { percent });
+      const detail = document.createElement("span");
+      detail.className = "rc-speaker-time";
+      detail.textContent = [timed ? clock(total.spokenMs) : "", tn("meta.words", total.words)].filter(Boolean).join(" · ");
+      row.append(avatar(key), speakerButton(key), share, detail);
+      list.appendChild(row);
+      if (weight(total) > 0) {
+        const part = document.createElement("i");
+        part.style.setProperty("--speaker", speakerColor(key));
+        part.style.flexGrow = String(weight(total));
+        shares.appendChild(part);
+      }
     }
     $("speakers-empty").classList.toggle("hidden", order.length > 0);
+  }
+
+  const LANGUAGE_NAMES = (() => {
+    try {
+      return new Intl.DisplayNames([locale], { type: "language" });
+    } catch {
+      return null;
+    }
+  })();
+
+  /** The facts of the transcript shown, under the speakers. */
+  function renderDetails(words) {
+    const transcript = state.transcript;
+    const rows = [];
+    if (transcript.startedAt) rows.push(["details.date", new Date(transcript.startedAt).toLocaleString(locale, { dateStyle: "medium", timeStyle: "short" })]);
+    if (transcript.durationMs > 0) rows.push(["details.duration", clock(transcript.durationMs)]);
+    if (words) rows.push(["details.words", words.toLocaleString(locale)]);
+    if (transcript.language && transcript.language !== "auto") {
+      let name = transcript.language;
+      try {
+        name = LANGUAGE_NAMES?.of(transcript.language) ?? name;
+      } catch {
+        // A code the browser has no name for: shown as it is.
+      }
+      rows.push(["details.language", name]);
+    }
+    const list = $("details");
+    list.replaceChildren();
+    for (const [key, value] of rows) {
+      const term = document.createElement("dt");
+      term.textContent = t(key);
+      const data = document.createElement("dd");
+      data.textContent = value;
+      list.append(term, data);
+    }
   }
 
   function renderMeta() {
@@ -363,6 +475,9 @@
     const words = transcript.segments.reduce((all, segment) => all + countWords(segment.text), 0);
     if (words) parts.push(tn("meta.words", words));
     $("meta").textContent = parts.join(" · ");
+    renderDetails(words);
+    // Idle, the clock of the recorder shows how long the transcript shown lasts.
+    if (!state.session) $("clock").textContent = clock(transcript.durationMs);
   }
 
   function renderAll() {
@@ -429,11 +544,17 @@
 
   const recordBtn = $("record");
   const pauseBtn = $("pause");
-  const chip = $("chip");
+  const dock = $("dock");
 
+  /** An icon, and a label: written in the button when it has room for one, said by it otherwise. */
   function setButton(button, icon, label) {
     button.querySelector("use").setAttribute("href", `#i-${icon}`);
-    button.querySelector("span").textContent = label;
+    const text = button.querySelector("span");
+    if (text) text.textContent = label;
+    else {
+      button.title = label;
+      button.setAttribute("aria-label", label);
+    }
   }
 
   function setPhase(phase) {
@@ -443,7 +564,7 @@
 
     setButton(
       recordBtn,
-      active ? "stop" : "mic",
+      active ? "stop" : "microphone",
       t({ idle: "record.start", starting: "record.starting", finishing: "record.finishing" }[phase] ?? "record.stop")
     );
     recordBtn.classList.toggle("live", active);
@@ -453,24 +574,22 @@
     setButton(pauseBtn, phase === "paused" ? "play" : "pause", t(phase === "paused" ? "pause.resume" : "pause.pause"));
     pauseBtn.disabled = phase === "reconnecting";
 
-    refreshChip();
+    refreshDock();
     refreshButtons();
+    refreshEditable();
     renderHistory();
   }
 
-  /** The state of the listening in a few words, with the time it has run. */
-  function refreshChip() {
+  /** The recorder: its state in a few words, and the time the listening has run. */
+  function refreshDock() {
     const session = state.session;
     const phase = state.phase;
-    chip.classList.toggle("hidden", phase === "idle");
-    if (phase === "idle") return;
-    const time = clock(session?.activeMs ?? 0);
     const interrupted = phase === "live" && session && (session.track?.muted || session.context.state !== "running");
-    const key = phase === "starting" ? "status.connecting" : phase === "finishing" ? "status.finishing" : interrupted ? "status.muted" : `status.${phase}`;
-    $("chip-text").textContent = t(key, { time });
-    chip.classList.toggle("waiting", phase !== "live" || Boolean(interrupted));
-    chip.classList.toggle("still", phase === "paused" || phase === "finishing");
-    $("meter").classList.toggle("hidden", phase === "starting" || phase === "finishing");
+    const key = phase === "idle" ? "status.idle" : phase === "starting" ? "status.connecting" : phase === "finishing" ? "status.finishing" : interrupted ? "status.muted" : `status.${phase}`;
+    $("status-text").textContent = t(key);
+    dock.dataset.phase = phase;
+    dock.dataset.tone = phase === "idle" ? "idle" : phase === "live" && !interrupted ? "live" : "wait";
+    if (session) $("clock").textContent = clock(session.activeMs);
   }
 
   function notify(code, vars) {
@@ -573,16 +692,17 @@
       notify("mic_lost");
       stop();
     });
-    session.track.addEventListener("mute", refreshChip);
-    session.track.addEventListener("unmute", refreshChip);
+    session.track.addEventListener("mute", refreshDock);
+    session.track.addEventListener("unmute", refreshDock);
     // A phone call, another app taking the audio: the system suspends the
     // context and gives it back later. It is asked to resume as soon as it may.
     context.addEventListener("statechange", () => {
       if (state.session !== session) return;
       if (context.state !== "running" && LISTENING.has(state.phase)) void context.resume().catch(() => {});
-      refreshChip();
+      refreshDock();
     });
 
+    levels = [];
     session.lastTick = Date.now();
     session.ticker = setInterval(() => tick(session), 500);
     session.frame = requestAnimationFrame(() => drawMeter(session));
@@ -597,7 +717,7 @@
     if (state.phase === "live" || state.phase === "reconnecting") session.activeMs += now - session.lastTick;
     session.lastTick = now;
     state.transcript.durationMs = Math.round(session.activeMs);
-    refreshChip();
+    refreshDock();
     if (statsDirty) {
       statsDirty = false;
       renderSpeakers();
@@ -605,20 +725,52 @@
     renderMeta();
   }
 
-  const METER_SHAPE = [0.55, 0.8, 1, 0.8, 0.55];
+  /** The level of the microphone over the last seconds, one bar every 60 ms. */
+  const WAVE_STEP_MS = 60;
+  const WAVE_BAR = 3;
+  const WAVE_GAP = 2;
+  const wave = $("wave");
+  let levels = [];
+  let lastLevelAt = 0;
+
+  function drawWave() {
+    const ratio = window.devicePixelRatio || 1;
+    const width = wave.clientWidth;
+    const height = wave.clientHeight;
+    if (!width || !height) return;
+    if (wave.width !== Math.round(width * ratio) || wave.height !== Math.round(height * ratio)) {
+      wave.width = Math.round(width * ratio);
+      wave.height = Math.round(height * ratio);
+    }
+    const ctx = wave.getContext("2d");
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = getComputedStyle(wave).color;
+    const count = Math.floor(width / (WAVE_BAR + WAVE_GAP));
+    if (levels.length > count) levels = levels.slice(-count);
+    // The newest bar on the right; what was not heard yet is a row of dots.
+    for (let i = 0; i < count; i++) {
+      const level = levels[levels.length - count + i] ?? 0;
+      const bar = Math.max(2, level * height);
+      ctx.globalAlpha = level ? 1 : 0.35;
+      ctx.beginPath();
+      ctx.roundRect(i * (WAVE_BAR + WAVE_GAP), (height - bar) / 2, WAVE_BAR, bar, 1.5);
+      ctx.fill();
+    }
+  }
 
   function drawMeter(session) {
     if (state.session !== session) return;
-    const bars = $("meter").children;
-    let level = 0;
-    if (state.phase === "live" && session.analyser) {
+    const now = performance.now();
+    if (now - lastLevelAt >= WAVE_STEP_MS && (state.phase === "live" || state.phase === "reconnecting") && session.analyser) {
+      lastLevelAt = now;
       const samples = new Uint8Array(session.analyser.fftSize);
       session.analyser.getByteTimeDomainData(samples);
       let sum = 0;
       for (const sample of samples) sum += ((sample - 128) / 128) ** 2;
-      level = Math.min(1, Math.sqrt(sum / samples.length) * 5);
+      levels.push(Math.min(1, Math.sqrt(sum / samples.length) * 6));
     }
-    for (let i = 0; i < bars.length; i++) bars[i].style.transform = `scaleY(${Math.max(0.15, Math.min(1, level * METER_SHAPE[i] * 1.5))})`;
+    drawWave();
     session.frame = requestAnimationFrame(() => drawMeter(session));
   }
 
@@ -750,32 +902,54 @@
     markDirty();
   });
 
-  // ---- Copy, download, new ----
+  // ---- Copy, export, new, delete ----
 
   function refreshButtons() {
     const hasText = state.transcript.segments.length > 0;
     $("copy").disabled = !hasText;
-    $("download").disabled = !hasText;
-    $("new").disabled = state.phase !== "idle" || !hasText;
+    $("export").disabled = !hasText;
+    $("find-toggle").disabled = !hasText;
+    $("new").disabled = state.phase !== "idle" || (!hasText && !state.transcript.id);
   }
 
   const turnsOf = (transcript) => transcript.segments.map((segment) => ({ ...segment, name: speakerName(segment.speaker), text: segment.text.trim() }));
+  const titleOf = (transcript) => transcript.title.trim() || t("title.placeholder");
+  const exportHead = (transcript) =>
+    t("export.meta", {
+      date: new Date(transcript.startedAt ?? Date.now()).toLocaleString(locale, { dateStyle: "long", timeStyle: "short" }),
+      duration: clock(transcript.durationMs),
+    });
 
   function asMarkdown() {
     const transcript = state.transcript;
-    const date = new Date(transcript.startedAt ?? Date.now()).toLocaleString(locale, { dateStyle: "long", timeStyle: "short" });
-    const lines = [`# ${transcript.title.trim() || t("title.placeholder")}`, "", `_${t("export.meta", { date, duration: clock(transcript.durationMs) })}_`, ""];
+    const lines = [`# ${titleOf(transcript)}`, "", `_${exportHead(transcript)}_`, ""];
     for (const turn of turnsOf(transcript)) {
       if (turn.gap) lines.push("---", "", `_${t("gap.label")}_`, "");
-      lines.push(`**${turn.name}** · ${clock(turn.startMs)}`, "", turn.text, "");
+      lines.push(prefs.times ? `**${turn.name}** · ${clock(turn.startMs)}` : `**${turn.name}**`, "", turn.text, "");
     }
     return lines.join("\n");
   }
 
-  $("copy").addEventListener("click", async () => {
-    const text = turnsOf(state.transcript)
-      .map((turn) => `${turn.name}: ${turn.text}`)
-      .join("\n\n");
+  function asText() {
+    const transcript = state.transcript;
+    const lines = [titleOf(transcript), exportHead(transcript), ""];
+    for (const turn of turnsOf(transcript)) lines.push(prefs.times ? `[${clock(turn.startMs)}] ${turn.name}: ${turn.text}` : `${turn.name}: ${turn.text}`, "");
+    return lines.join("\n");
+  }
+
+  /** Subtitles: one cue per turn, on the clock of the recording. */
+  function asSubtitles() {
+    const stamp = (ms) => {
+      const pad = (n, size = 2) => String(n).padStart(size, "0");
+      const total = Math.max(0, Math.round(ms));
+      return `${pad(Math.floor(total / 3600000))}:${pad(Math.floor((total % 3600000) / 60000))}:${pad(Math.floor((total % 60000) / 1000))},${pad(total % 1000, 3)}`;
+    };
+    return turnsOf(state.transcript)
+      .map((turn, index) => `${index + 1}\n${stamp(turn.startMs)} --> ${stamp(Math.max(turn.endMs ?? 0, turn.startMs + 1000))}\n${turn.name}: ${turn.text}\n`)
+      .join("\n");
+  }
+
+  async function copyText(text, doneKey) {
     try {
       await navigator.clipboard.writeText(text);
     } catch {
@@ -788,10 +962,18 @@
       document.execCommand("copy");
       area.remove();
     }
-    toast(t("action.copied"));
-  });
+    toast(t(doneKey));
+  }
 
-  $("download").addEventListener("click", () => {
+  const copyTranscript = () =>
+    copyText(
+      turnsOf(state.transcript)
+        .map((turn) => `${turn.name}: ${turn.text}`)
+        .join("\n\n"),
+      "action.copied"
+    );
+
+  function download(content, extension, type) {
     const transcript = state.transcript;
     const slug = (transcript.title || "")
       .normalize("NFD")
@@ -800,16 +982,231 @@
       .replace(/\s+/g, "-")
       .toLowerCase();
     const link = document.createElement("a");
-    link.href = URL.createObjectURL(new Blob([asMarkdown()], { type: "text/markdown;charset=utf-8" }));
-    link.download = `${slug || "transcript"}-${transcript.id ?? "draft"}.md`;
+    link.href = URL.createObjectURL(new Blob([content], { type: `${type};charset=utf-8` }));
+    link.download = `${slug || "transcript"}-${transcript.id ?? "draft"}.${extension}`;
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-  });
+  }
 
-  $("new").addEventListener("click", async () => {
+  async function newTranscript() {
     if (state.phase !== "idle") return;
     await save();
     openTranscript(emptyTranscript());
+    closePanels();
+  }
+
+  async function deleteTranscript(id) {
+    try {
+      await api("DELETE", `api/transcripts/${id}`);
+    } catch (error) {
+      notify(error.code, { status: error.status ?? "" });
+      return;
+    }
+    toast(t("history.deleted"));
+    if (id === state.transcript.id) openTranscript(emptyTranscript());
+    void loadHistory();
+  }
+
+  $("copy").addEventListener("click", () => void copyTranscript());
+  $("new").addEventListener("click", () => void newTranscript());
+
+  // ---- Menus: the export formats, and the rest of the actions ----
+
+  const menu = $("menu");
+  let menuAnchor = null;
+
+  function closeMenu() {
+    menu.classList.add("hidden");
+    menuAnchor?.classList.remove("active");
+    menuAnchor = null;
+  }
+
+  /** items: { icon, label, hint, danger, disabled, keep, run } or "-" for a line.
+   *  `keep` leaves the menu open after the click: the item changes instead. */
+  function openMenu(anchor, items) {
+    if (menuAnchor === anchor) return closeMenu();
+    closeMenu();
+    menuAnchor = anchor;
+    anchor.classList.add("active");
+    menu.replaceChildren();
+    for (const item of items) {
+      if (item === "-") {
+        const line = document.createElement("div");
+        line.className = "rc-menu-sep";
+        menu.appendChild(line);
+        continue;
+      }
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `rc-menu-item${item.danger ? " danger" : ""}`;
+      button.setAttribute("role", "menuitem");
+      button.disabled = Boolean(item.disabled);
+      const label = document.createElement("span");
+      label.textContent = item.label;
+      button.innerHTML = `<svg><use href="#i-${item.icon}"/></svg>`;
+      button.appendChild(label);
+      if (item.hint) {
+        const hint = document.createElement("small");
+        hint.textContent = item.hint;
+        button.appendChild(hint);
+      }
+      button.addEventListener("click", () => {
+        if (!item.keep?.(button, label)) closeMenu();
+        void item.run?.();
+      });
+      menu.appendChild(button);
+    }
+    menu.classList.remove("hidden");
+    const box = menu.getBoundingClientRect();
+    const at = anchor.getBoundingClientRect();
+    menu.style.left = `${Math.max(8, Math.min(at.right - box.width, window.innerWidth - box.width - 8))}px`;
+    menu.style.top = `${Math.max(8, Math.min(at.bottom + 4, window.innerHeight - box.height - 8))}px`;
+  }
+
+  $("export").addEventListener("click", (event) =>
+    openMenu(event.currentTarget, [
+      { icon: "markdown-logo", label: t("export.markdown"), hint: ".md", run: () => download(asMarkdown(), "md", "text/markdown") },
+      { icon: "file-text", label: t("export.text"), hint: ".txt", run: () => download(asText(), "txt", "text/plain") },
+      { icon: "closed-captioning", label: t("export.subtitles"), hint: ".srt", run: () => download(asSubtitles(), "srt", "application/x-subrip") },
+    ])
+  );
+
+  $("more").addEventListener("click", (event) => {
+    const transcript = state.transcript;
+    const hasText = transcript.segments.length > 0;
+    const idle = state.phase === "idle";
+    let asked = false;
+    openMenu(event.currentTarget, [
+      { icon: "plus", label: t("action.new"), disabled: !idle || (!hasText && !transcript.id), run: newTranscript },
+      "-",
+      { icon: "copy", label: t("action.copyAll"), disabled: !hasText, run: copyTranscript },
+      { icon: "clock", label: t(prefs.times ? "times.hide" : "times.show"), run: toggleTimes },
+      "-",
+      {
+        icon: "trash",
+        label: t("action.delete"),
+        danger: true,
+        disabled: !idle || !transcript.id,
+        // Two clicks to delete: the first one asks, and the item says so.
+        keep: (button, label) => {
+          if (asked) return false;
+          label.textContent = t("action.deleteConfirm");
+          return true;
+        },
+        run: () => {
+          if (asked) return deleteTranscript(transcript.id);
+          asked = true;
+          return undefined;
+        },
+      },
+    ]);
+  });
+
+  document.addEventListener("mousedown", (event) => {
+    if (!event.target.closest?.("#menu") && event.target.closest?.("button") !== menuAnchor) closeMenu();
+  });
+  window.addEventListener("blur", closeMenu);
+  window.addEventListener("resize", closeMenu);
+
+  // ---- Timestamps ----
+
+  function applyTimes() {
+    $("app").classList.toggle("no-times", !prefs.times);
+    $("times-toggle").setAttribute("aria-pressed", String(prefs.times));
+  }
+
+  function toggleTimes() {
+    prefs.times = !prefs.times;
+    savePrefs();
+    applyTimes();
+  }
+
+  $("times-toggle").addEventListener("click", toggleTimes);
+
+  // ---- Search in the transcript ----
+
+  /** Matches are painted with the browser's highlights: the text of the turns
+   *  is not touched, so words still arriving do not undo them. */
+  const find = { open: false, ranges: [], index: 0 };
+  const canHighlight = typeof Highlight === "function" && Boolean(CSS.highlights);
+
+  function paintFind() {
+    if (canHighlight) {
+      CSS.highlights.delete("rc-find");
+      CSS.highlights.delete("rc-find-current");
+      if (find.ranges.length) {
+        CSS.highlights.set("rc-find", new Highlight(...find.ranges.filter((range, index) => index !== find.index)));
+        CSS.highlights.set("rc-find-current", new Highlight(find.ranges[find.index]));
+      }
+    }
+    const query = $("find-input").value.trim();
+    $("find-count").textContent = !query ? "" : find.ranges.length ? t("find.count", { index: find.index + 1, total: find.ranges.length }) : t("find.none");
+    $("find-prev").disabled = $("find-next").disabled = find.ranges.length < 2;
+  }
+
+  /** Finds again; `reveal` brings the current match on screen. */
+  function runFind(reveal = true) {
+    const needle = $("find-input").value.trim().toLowerCase();
+    const ranges = [];
+    if (find.open && needle) {
+      const walker = document.createTreeWalker(transcriptEl, NodeFilter.SHOW_TEXT, {
+        acceptNode: (node) => (node.parentElement?.closest(".rc-text") ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+      });
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        const text = node.data.toLowerCase();
+        for (let at = text.indexOf(needle); at !== -1; at = text.indexOf(needle, at + needle.length)) {
+          const range = document.createRange();
+          range.setStart(node, at);
+          range.setEnd(node, at + needle.length);
+          ranges.push(range);
+        }
+      }
+    }
+    find.ranges = ranges;
+    find.index = Math.min(find.index, Math.max(0, ranges.length - 1));
+    paintFind();
+    if (reveal) revealMatch();
+  }
+
+  function revealMatch() {
+    const range = find.ranges[find.index];
+    if (!range) return;
+    state.following = false;
+    range.startContainer.parentElement?.closest(".rc-turn")?.scrollIntoView({ block: "center" });
+    refreshLatestButton();
+  }
+
+  function stepFind(step) {
+    if (!find.ranges.length) return;
+    find.index = (find.index + step + find.ranges.length) % find.ranges.length;
+    paintFind();
+    revealMatch();
+  }
+
+  function setFind(open) {
+    find.open = open;
+    $("find").classList.toggle("hidden", !open);
+    $("find-toggle").classList.toggle("active", open);
+    if (open) {
+      $("find-input").focus();
+      $("find-input").select();
+    } else find.index = 0;
+    runFind(open);
+  }
+
+  $("find-toggle").addEventListener("click", () => setFind(!find.open));
+  $("find-close").addEventListener("click", () => setFind(false));
+  $("find-prev").addEventListener("click", () => stepFind(-1));
+  $("find-next").addEventListener("click", () => stepFind(1));
+  $("find-input").addEventListener("input", () => {
+    find.index = 0;
+    runFind();
+  });
+  $("find-input").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      stepFind(event.shiftKey ? -1 : 1);
+    }
   });
 
   // ---- History ----
@@ -839,6 +1236,16 @@
     renderHistory();
   }
 
+  /** "Today", "Yesterday", then the day itself. */
+  function dayLabel(iso) {
+    const date = new Date(iso);
+    const start = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+    const days = Math.round((start(new Date()) - start(date)) / 86400000);
+    if (days === 0) return t("history.today");
+    if (days === 1) return t("history.yesterday");
+    return date.toLocaleDateString(locale, { weekday: "long", day: "numeric", month: "long", ...(date.getFullYear() !== new Date().getFullYear() ? { year: "numeric" } : {}) });
+  }
+
   function renderHistory() {
     const list = $("history");
     const query = $("history-search").value.trim().toLowerCase();
@@ -850,21 +1257,39 @@
     empty.classList.toggle("hidden", shown.length > 0);
     empty.textContent = t(history.length ? "history.noMatch" : "history.empty");
 
+    let day = "";
     for (const entry of shown) {
-      const item = document.createElement("li");
+      const label = dayLabel(entry.startedAt);
+      if (label !== day) {
+        day = label;
+        const heading = document.createElement("h3");
+        heading.className = "rc-history-day";
+        heading.textContent = label;
+        list.appendChild(heading);
+      }
+      const item = document.createElement("div");
+      item.className = "rc-history-row";
       item.classList.toggle("current", entry.id === state.transcript.id);
 
       const open = document.createElement("button");
       open.type = "button";
-      open.className = "lt-history-open";
+      open.className = "rc-history-open";
       open.disabled = busy;
       const name = document.createElement("span");
-      name.className = "lt-history-name";
-      name.textContent = entry.title || t("title.placeholder");
+      name.className = "rc-history-name";
+      // The one being listened to carries the red dot of the recorder.
+      if (busy && entry.id === state.transcript.id) {
+        const live = document.createElement("i");
+        live.className = "rc-history-live";
+        name.appendChild(live);
+      }
+      const title = document.createElement("span");
+      title.textContent = entry.title || t("title.placeholder");
+      name.appendChild(title);
       const meta = document.createElement("span");
-      meta.className = "lt-history-meta";
+      meta.className = "rc-history-meta";
       meta.textContent = [
-        new Date(entry.startedAt).toLocaleString(locale, { dateStyle: "short", timeStyle: "short" }),
+        new Date(entry.startedAt).toLocaleTimeString(locale, { hour: "2-digit", minute: "2-digit" }),
         clock(entry.durationMs),
         tn("meta.speakers", entry.speakers),
       ].join(" · ");
@@ -875,7 +1300,7 @@
         try {
           const transcript = await api("GET", `api/transcripts/${entry.id}`);
           openTranscript({ ...emptyTranscript(), ...transcript });
-          $("app").classList.remove("history-open");
+          closePanels();
         } catch (error) {
           notify(error.code, { status: error.status ?? "" });
         }
@@ -884,7 +1309,7 @@
       // Two clicks to delete: the first one asks, and forgets after a moment.
       const remove = document.createElement("button");
       remove.type = "button";
-      remove.className = "lt-history-delete";
+      remove.className = "rc-history-delete";
       remove.title = t("history.delete");
       remove.setAttribute("aria-label", t("history.delete"));
       remove.disabled = busy;
@@ -900,15 +1325,7 @@
           }, 4000);
           return;
         }
-        try {
-          await api("DELETE", `api/transcripts/${entry.id}`);
-        } catch (error) {
-          notify(error.code, { status: error.status ?? "" });
-          return;
-        }
-        toast(t("history.deleted"));
-        if (entry.id === state.transcript.id) openTranscript(emptyTranscript());
-        void loadHistory();
+        await deleteTranscript(entry.id);
       });
 
       item.append(open, remove);
@@ -918,22 +1335,59 @@
 
   $("history-search").addEventListener("input", renderHistory);
 
-  // ---- Panels, on a narrow screen ----
+  // ---- Panels: beside the page when it has room, over it otherwise ----
 
-  $("history-toggle").addEventListener("click", () => {
-    $("app").classList.remove("speakers-open");
-    $("app").classList.toggle("history-open");
-  });
-  $("speakers-toggle").addEventListener("click", () => {
-    $("app").classList.remove("history-open");
-    $("app").classList.toggle("speakers-open");
-  });
-  for (const button of document.querySelectorAll("[data-close]")) {
-    button.addEventListener("click", () => $("app").classList.remove(`${button.dataset.close}-open`));
+  const app = $("app");
+  const OVERLAY = { history: "(max-width: 720px)", speakers: "(max-width: 1100px)" };
+
+  function closePanels() {
+    app.classList.remove("history-open", "speakers-open");
   }
+
+  function applyPanels() {
+    app.classList.toggle("history-off", !prefs.history);
+    app.classList.toggle("speakers-off", !prefs.speakers);
+  }
+
+  function togglePanel(name) {
+    const other = name === "history" ? "speakers" : "history";
+    if (window.matchMedia(OVERLAY[name]).matches) {
+      app.classList.remove(`${other}-open`);
+      app.classList.toggle(`${name}-open`);
+      return;
+    }
+    prefs[name] = !prefs[name];
+    savePrefs();
+    applyPanels();
+  }
+
+  $("history-toggle").addEventListener("click", () => togglePanel("history"));
+  $("speakers-toggle").addEventListener("click", () => togglePanel("speakers"));
+  $("scrim").addEventListener("click", closePanels);
+  for (const button of document.querySelectorAll("[data-close]")) button.addEventListener("click", closePanels);
+
+  // ---- Keyboard ----
+
+  document.addEventListener("keydown", (event) => {
+    const typing = event.target.closest?.("input, textarea, [contenteditable]");
+    if ((event.ctrlKey || event.metaKey) && !event.altKey && event.key.toLowerCase() === "f" && state.transcript.segments.length) {
+      event.preventDefault();
+      setFind(true);
+    } else if (event.key === "Escape") {
+      if (!menu.classList.contains("hidden")) closeMenu();
+      else if (find.open) setFind(false);
+      else closePanels();
+    } else if (event.key === " " && !typing && !event.target.closest?.("button") && (state.phase === "live" || state.phase === "paused")) {
+      // Space pauses and resumes, as on any recorder.
+      event.preventDefault();
+      togglePause();
+    }
+  });
 
   // ---- Start-up ----
 
+  applyPanels();
+  applyTimes();
   setPhase("idle");
   renderAll();
   void loadHistory();

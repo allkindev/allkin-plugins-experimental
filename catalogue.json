@@ -439,7 +439,7 @@
     {
       "id": "recordr",
       "name": "Recordr",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "description": "Écoute le micro, transcrit ce qui se dit au fil de la parole et distingue les interlocuteurs. La reconnaissance est faite par le service audio que tu choisis.",
       "author": "Allkin",
       "permissions": [
@@ -481,23 +481,23 @@
       "files": [
         {
           "path": "README-DE.md",
-          "size": 5091,
-          "sha256": "5f2447ada78e0208646cd7ddd4a2c2c5f861a0e75143e2ee261ce933eb1feb63"
+          "size": 5951,
+          "sha256": "62abf483c5cc5acb58fcfb0af72eacf545b2005160ee6b3c4f911cd6bfb68634"
         },
         {
           "path": "README-EN.md",
-          "size": 4618,
-          "sha256": "193797d6b512cc696008e54068bb6ffd4984a82fd7057560cdbe462d80e774cf"
+          "size": 5386,
+          "sha256": "e622bda1d827c709d03550ee89e5e40d4a33352ecbd5b07ac83750bbfd554cbf"
         },
         {
           "path": "README-ES.md",
-          "size": 4893,
-          "sha256": "1d3ce3e2b344dcae227e2885bc40ee7e05bfadd0b357795abb63c9146f9a45fe"
+          "size": 5724,
+          "sha256": "cce95614686fa1d7846c8b3eafbd21ec88f31dbf4ea6369d04b185f117117339"
         },
         {
           "path": "README.md",
-          "size": 4985,
-          "sha256": "f9d062ff97d2a5af25b3e3ff1dadae626cc509ca80fd2f7539caf2b309f4a4ae"
+          "size": 5844,
+          "sha256": "9fa572658a4c2d6b95948c1ba66f480159f32b35434e96257d0bd3548ceb161c"
         },
         {
           "path": "icon.svg",
@@ -507,7 +507,7 @@
         {
           "path": "plugin.json",
           "size": 5920,
-          "sha256": "29dac3e50ef55bcc3d17cd8ef2ec6550b2684aadb12100d856044eacaeb25cd4"
+          "sha256": "9d527c1b277a1bea247a5afa41ee0836e024eb941e5126efd672b7f235408038"
         },
         {
           "path": "server.mjs",
@@ -521,18 +521,18 @@
         },
         {
           "path": "web/app.js",
-          "size": 36123,
-          "sha256": "bc987df039706e28cadc75ef43cba762edeb01adb83655ea0284435ba782c80f"
+          "size": 53184,
+          "sha256": "c8647ca23c3f7eca0025191a5554303afae0ed3f20aaa92bd229e40fcdcd2038"
         },
         {
           "path": "web/index.html",
-          "size": 5772,
-          "sha256": "c4c1552e5aa4e05819b5cb5d0798976623fcec1e42a73e914ba06a531c18761d"
+          "size": 13866,
+          "sha256": "4603519efe813ca1ef76d4363293acbad575c134cc5e72cd7b646b9774edfafa"
         },
         {
           "path": "web/locales.js",
-          "size": 15422,
-          "sha256": "fdd79305f8b651cc2cab0fe8be6713eae56fdca573db29546c81c5736e7784a4"
+          "size": 19678,
+          "sha256": "8e1a9dcda143eccb8ef2a5d8b041f33d9f2d3d81674f5326096f31ee599e14f6"
         },
         {
           "path": "web/stream.js",
@@ -541,8 +541,8 @@
         },
         {
           "path": "web/style.css",
-          "size": 18283,
-          "sha256": "3b01e68e8f9303fbdf28628635963a083598490629b39fc22b99edcf780a31d1"
+          "size": 24753,
+          "sha256": "f031499a5190eff08500272d4a6c3b051d45758da7311fd1b67d313679ae6850"
         },
         {
           "path": "web/worklet.js",
