@@ -8,10 +8,11 @@ soll.
 
 - **Ein Bild eines Agenten oder des freigegebenen Ordners**: im Datei-Explorer Rechtsklick auf das
   Bild › **Bild bearbeiten**. Es öffnet sich in einem eigenen Tab.
-- **Ein Bild von diesem Gerät**: Plugin-Liste des Allkin-Menüs › **Bildeditor**, oder die
-  Schaltfläche **Öffnen** im Editor. Man kann auch eine Datei auf den Editor ziehen oder ein Bild
-  einfügen (Strg+V), während er angezeigt wird.
-
+- **Ein Bild von diesem Gerät**: Tool-Liste des Allkin-Menüs › **Bildeditor** öffnet die Startseite:
+  Legen Sie ein Bild darauf ab, drücken Sie **Zwischenablage einfügen** (oder Strg+V – ⌘V auf dem
+  Mac – direkt nach einem Bildschirmfoto), oder **Datei öffnen…** über die Dateiauswahl Ihres Geräts.
+  Die Schaltfläche **Öffnen** des Editors, Ablegen und Einfügen funktionieren auch in jedem seiner
+  Tabs.
 ## Werkzeuge
 
 Links (auf dem Telefon unten):
@@ -63,10 +64,10 @@ Keine.
 ## Wenn es nicht funktioniert
 
 - *„Bild bearbeiten“ fehlt im Explorer*: Der Explorer muss mindestens Version 1.0.15 haben, und die
-  Seite muss nach dem Aktivieren des Plugins neu geladen werden.
+  Seite muss nach dem Aktivieren des Tools neu geladen werden.
 - *Kopieren funktioniert nicht*: Der Browser verweigert die Zwischenablage außerhalb von HTTPS;
   Exportieren verwenden.
 - *Sehr großes Bild*: Ab etwa 16.000 Pixeln Seitenlänge kann dem Browser der Speicher ausgehen;
   zuerst verkleinern.
 
-Experimentelles Plugin: ein erster Entwurf, noch zu validieren.
+Experimentelles Tool: ein erster Entwurf, noch zu validieren.

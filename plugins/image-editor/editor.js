@@ -42,6 +42,7 @@ const ICONS = {
   "arrow-up-right:light": [{"d": "M198,64V168a6,6,0,0,1-12,0V78.48L68.24,196.24a6,6,0,0,1-8.48-8.48L177.52,70H88a6,6,0,0,1,0-12H192A6,6,0,0,1,198,64Z"}],
   "check:light": [{"d": "M228.24,76.24l-128,128a6,6,0,0,1-8.48,0l-56-56a6,6,0,0,1,8.48-8.48L96,191.51,219.76,67.76a6,6,0,0,1,8.48,8.48Z"}],
   "checkerboard:light": [{"d": "M208,34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34Zm-13.52,88L134,61.52V46h15.52L210,106.48V122ZM134,78.48,177.52,122H134ZM210,48V89.52L166.48,46H208A2,2,0,0,1,210,48ZM48,46h74v76H46V48A2,2,0,0,1,48,46Zm58.48,164L46,149.52V134H61.52L122,194.48V210ZM122,177.52,78.48,134H122ZM46,208V166.48L89.52,210H48A2,2,0,0,1,46,208Zm162,2H134V192h0V134h76v74A2,2,0,0,1,208,210Z"}],
+  "clipboard:light": [{"d": "M200,34H162.83a45.91,45.91,0,0,0-69.66,0H56A14,14,0,0,0,42,48V216a14,14,0,0,0,14,14H200a14,14,0,0,0,14-14V48A14,14,0,0,0,200,34Zm-72-4a34,34,0,0,1,34,34v2H94V64A34,34,0,0,1,128,30Zm74,186a2,2,0,0,1-2,2H56a2,2,0,0,1-2-2V48a2,2,0,0,1,2-2H85.67A45.77,45.77,0,0,0,82,64v8a6,6,0,0,0,6,6h80a6,6,0,0,0,6-6V64a45.77,45.77,0,0,0-3.67-18H200a2,2,0,0,1,2,2Z"}],
   "circle:light": [{"d": "M128,26A102,102,0,1,0,230,128,102.12,102.12,0,0,0,128,26Zm0,192a90,90,0,1,1,90-90A90.1,90.1,0,0,1,128,218Z"}],
   "copy:light": [{"d": "M216,34H88a6,6,0,0,0-6,6V82H40a6,6,0,0,0-6,6V216a6,6,0,0,0,6,6H168a6,6,0,0,0,6-6V174h42a6,6,0,0,0,6-6V40A6,6,0,0,0,216,34ZM162,210H46V94H162Zm48-48H174V88a6,6,0,0,0-6-6H94V46H210Z"}],
   "crop:light": [{"d": "M238,192a6,6,0,0,1-6,6H198v34a6,6,0,0,1-12,0V198H64a6,6,0,0,1-6-6V70H24a6,6,0,0,1,0-12H58V24a6,6,0,0,1,12,0V186H232A6,6,0,0,1,238,192ZM96,70h90v90a6,6,0,0,0,12,0V64a6,6,0,0,0-6-6H96a6,6,0,0,0,0,12Z"}],
@@ -53,6 +54,7 @@ const ICONS = {
   "folder-open:light": [{"d": "M243.36,111.81A14,14,0,0,0,232,106H214V88a14,14,0,0,0-14-14H130L101.74,52.8a14.06,14.06,0,0,0-8.4-2.8H40A14,14,0,0,0,26,64V208a6,6,0,0,0,6,6H211.1a6,6,0,0,0,5.69-4.1l28.49-85.47A14,14,0,0,0,243.36,111.81ZM40,62H93.34a2,2,0,0,1,1.2.4L124.4,84.8A6,6,0,0,0,128,86h72a2,2,0,0,1,2,2v18H69.77a14,14,0,0,0-13.28,9.57L38,171V64A2,2,0,0,1,40,62Zm193.9,58.63L206.78,202H40.33l27.54-82.63a2,2,0,0,1,1.9-1.37H232a2,2,0,0,1,1.9,2.63Z"}],
   "highlighter:light": [{"d": "M252.24,107.76a6,6,0,0,0-8.48,0L193.41,158.1a2,2,0,0,1-2.82,0L105.9,73.41a2,2,0,0,1,0-2.82l50.34-50.35a6,6,0,0,0-8.48-8.48L97.41,62.1A14,14,0,0,0,95.7,79.81L73.41,102.1a14,14,0,0,0,0,19.8l6.1,6.1L19.76,187.76a6,6,0,0,0,2.34,9.93l72,24a6,6,0,0,0,6.14-1.45L136,184.49l6.1,6.1a14,14,0,0,0,19.8,0l22.28-22.29a14,14,0,0,0,17.72-1.71l50.34-50.35A6,6,0,0,0,252.24,107.76ZM94.38,209.14,35.11,189.38,88,136.49,127.51,176Zm59-27a2,2,0,0,1-2.82,0l-10.35-10.34h0l-48-48h0L81.9,113.41a2,2,0,0,1,0-2.82L104,88.49,175.51,160Z"}],
   "image:duotone": [{"d": "M224,56V178.06l-39.72-39.72a8,8,0,0,0-11.31,0L147.31,164,97.66,114.34a8,8,0,0,0-11.32,0L32,168.69V56a8,8,0,0,1,8-8H216A8,8,0,0,1,224,56Z", "o": "0.2"}, {"d": "M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V158.75l-26.07-26.06a16,16,0,0,0-22.63,0l-20,20-44-44a16,16,0,0,0-22.62,0L40,149.37V56ZM40,172l52-52,80,80H40Zm176,28H194.63l-36-36,20-20L216,181.38V200ZM144,100a12,12,0,1,1,12,12A12,12,0,0,1,144,100Z"}],
+  "image-square:light": [{"d": "M208,34H48A14,14,0,0,0,34,48V208a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V48A14,14,0,0,0,208,34ZM46,208V48a2,2,0,0,1,2-2H208a2,2,0,0,1,2,2v82.2l-28.1-28.1a14,14,0,0,0-19.8,0L54.2,210H48A2,2,0,0,1,46,208Zm162,2H71.17l99.41-99.41a2,2,0,0,1,2.83,0L210,147.17V208A2,2,0,0,1,208,210ZM96,118A22,22,0,1,0,74,96,22,22,0,0,0,96,118Zm0-32A10,10,0,1,1,86,96,10,10,0,0,1,96,86Z"}],
   "image:light": [{"d": "M216,42H40A14,14,0,0,0,26,56V200a14,14,0,0,0,14,14H216a14,14,0,0,0,14-14V56A14,14,0,0,0,216,42ZM40,54H216a2,2,0,0,1,2,2V163.57L188.53,134.1a14,14,0,0,0-19.8,0l-21.42,21.42L101.9,110.1a14,14,0,0,0-19.8,0L38,154.2V56A2,2,0,0,1,40,54ZM38,200V171.17l52.58-52.58a2,2,0,0,1,2.84,0L176.83,202H40A2,2,0,0,1,38,200Zm178,2H193.8l-38-38,21.41-21.42a2,2,0,0,1,2.83,0l38,38V200A2,2,0,0,1,216,202ZM146,100a10,10,0,1,1,10,10A10,10,0,0,1,146,100Z"}],
   "line-segment:light": [{"d": "M213.23,42.77A30,30,0,0,0,167,80.54L80.54,167a30.07,30.07,0,0,0-37.77,3.81h0A30,30,0,1,0,89,175.46L175.46,89a30,30,0,0,0,37.77-46.25Zm-136.51,162a18,18,0,1,1,0-25.46A18,18,0,0,1,76.72,204.74Zm128-128a18,18,0,0,1-25.46,0h0a18,18,0,1,1,25.46,0Z"}],
   "magnifying-glass-minus:light": [{"d": "M150,112a6,6,0,0,1-6,6H80a6,6,0,0,1,0-12h64A6,6,0,0,1,150,112Zm78.24,116.24a6,6,0,0,1-8.48,0l-51.38-51.38a86.15,86.15,0,1,1,8.48-8.48l51.38,51.38A6,6,0,0,1,228.24,228.24ZM112,186a74,74,0,1,0-74-74A74.09,74.09,0,0,0,112,186Z"}],
@@ -103,6 +105,10 @@ const IMAGE_EXT = new Set(["png", "jpg", "jpeg", "webp", "gif", "bmp", "avif"]);
 const WRITABLE = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", webp: "image/webp" };
 const EXT_OF = { "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp" };
 const DRAW_TOOLS = new Set(["arrow", "line", "rect", "ellipse", "pen", "marker"]);
+/** The path of the welcome tab: one per page, no image behind it. */
+const HOME_PATH = "home";
+/** The paste shortcut as this device writes it: ⌘V on Apple hardware. */
+const PASTE_KEY = /Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent) ? "⌘V" : "Ctrl+V";
 
 const extOf = (name) => (name.includes(".") ? name.slice(name.lastIndexOf(".") + 1).toLowerCase() : "");
 const stemOf = (name) => (name.includes(".") ? name.slice(0, name.lastIndexOf(".")) : name);
@@ -153,8 +159,11 @@ function newDoc(tab) {
     error: null,
     byteSize: null,
     local: !tab.agentId,
+    home: isHomeTab(tab),
   };
 }
+
+const isHomeTab = (tab) => !tab.agentId && tab.path === HOME_PATH;
 
 /* ---- Canvas helpers ------------------------------------------------------ */
 
@@ -543,7 +552,11 @@ function render() {
   const doc = ui.doc;
   const c = canvas();
   el("ie-loading").classList.toggle("hidden", !doc?.loading);
-  const empty = !doc || (!doc.base && !doc.loading);
+  const home = Boolean(doc?.home);
+  el("ie-view").classList.toggle("is-home", home);
+  el("ie-home").classList.toggle("hidden", !home);
+  if (home) el("ie-home-hint").textContent = t("plugin.image-editor.home.hint", { key: PASTE_KEY });
+  const empty = !doc || (!doc.base && !doc.loading && !home);
   el("ie-empty").classList.toggle("hidden", !empty);
   if (empty && doc?.error) el("ie-empty").querySelector("p").textContent = doc.error;
   else el("ie-empty").querySelector("p").textContent = t("plugin.image-editor.empty");
@@ -599,8 +612,9 @@ function render() {
 function renderBar() {
   const doc = ui.doc;
   el("ie-view").dataset.tool = ui.tool;
-  el("ie-name").textContent = doc ? doc.name + (doc.dirty ? " •" : "") : "";
+  el("ie-name").textContent = doc?.home ? t("plugin.image-editor.app.name") : doc ? doc.name + (doc.dirty ? " •" : "") : "";
   const meta = [];
+  if (doc?.home) meta.push(t("plugin.image-editor.app.meta"));
   if (doc?.base) meta.push(`${doc.base.width} × ${doc.base.height}`);
   if (doc?.byteSize != null && !doc.dirty) meta.push(core.formatSize(doc.byteSize));
   if (doc?.agentId && !doc.local) meta.push(`${core.agentName(doc.agentId)} · ${doc.path}`);
@@ -898,6 +912,36 @@ function pickFromDevice() {
   const input = el("ie-file");
   input.value = "";
   input.click();
+}
+
+/** The welcome tab: what the Tools list opens. */
+function openHome() {
+  openTab(null, KIND, { path: HOME_PATH, name: t("plugin.image-editor.app.name") });
+}
+
+/** The "Paste the clipboard" button: reads the clipboard through its API —
+ *  a permission the browser asks for, and refuses outside HTTPS — and opens
+ *  the first image found. The keyboard shortcut stays the sure way. */
+async function pasteFromClipboard() {
+  if (!navigator.clipboard?.read) {
+    toast(t("plugin.image-editor.paste.unsupported", { key: PASTE_KEY }), "ko");
+    return;
+  }
+  let items;
+  try {
+    items = await navigator.clipboard.read();
+  } catch {
+    toast(t("plugin.image-editor.paste.failed", { key: PASTE_KEY }), "ko");
+    return;
+  }
+  for (const item of items) {
+    const type = item.types.find((x) => x.startsWith("image/"));
+    if (!type) continue;
+    const blob = await item.getType(type);
+    await openBlob(blob, `${t("plugin.image-editor.pasted")}.${EXT_OF[type] ?? "png"}`);
+    return;
+  }
+  toast(t("plugin.image-editor.paste.noImage"), "ko");
 }
 
 /* ---- Saving -------------------------------------------------------------- */
@@ -1206,6 +1250,7 @@ Allkin.registerTabKind(KIND, {
   icon: TAB_ICON,
   byPath: true,
   label: (tab) => {
+    if (isHomeTab(tab)) return t("plugin.image-editor.app.name");
     const doc = docs.get(docKey(tab));
     return (tab.name || tab.path.split("/").pop()) + (doc?.dirty ? " •" : "");
   },
@@ -1228,7 +1273,7 @@ Allkin.registerApp({
     return t("plugin.image-editor.app.meta");
   },
   icon: TAB_ICON,
-  open: pickFromDevice,
+  open: openHome,
 });
 
 /* ---- Wiring -------------------------------------------------------------- */
@@ -1277,6 +1322,8 @@ el("ie-undo").addEventListener("click", undo);
 el("ie-redo").addEventListener("click", redo);
 el("ie-open").addEventListener("click", pickFromDevice);
 el("ie-empty-open").addEventListener("click", pickFromDevice);
+el("ie-home-open").addEventListener("click", pickFromDevice);
+el("ie-home-paste").addEventListener("click", () => void pasteFromClipboard());
 el("ie-copy").addEventListener("click", () => void copyToClipboard());
 el("ie-export").addEventListener("click", () => openExport());
 el("ie-save").addEventListener("click", () => void save());
@@ -1304,11 +1351,19 @@ el("ie-stage").addEventListener(
   { passive: false }
 );
 
-// A file dropped on the editor opens in a tab of its own.
+// A file dropped on the editor opens in a tab of its own; the welcome
+// page's zone lights up while a file hovers over the editor.
+const dropping = (on) => el("ie-drop").classList.toggle("is-dropping", on);
 view.addEventListener("dragover", (e) => {
-  if ([...(e.dataTransfer?.items ?? [])].some((i) => i.kind === "file")) e.preventDefault();
+  if (![...(e.dataTransfer?.items ?? [])].some((i) => i.kind === "file")) return;
+  e.preventDefault();
+  dropping(true);
+});
+view.addEventListener("dragleave", (e) => {
+  if (!view.contains(e.relatedTarget)) dropping(false);
 });
 view.addEventListener("drop", (e) => {
+  dropping(false);
   const file = [...(e.dataTransfer?.files ?? [])].find((f) => f.type.startsWith("image/"));
   if (!file) return;
   e.preventDefault();

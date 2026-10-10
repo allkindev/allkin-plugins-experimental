@@ -18,6 +18,26 @@
       </div>
     </header>
 
+    <!-- Welcome page (the tab the Tools list opens): what the editor does,
+         and the three ways to bring an image in — drop, clipboard, a file of
+         this device. An image of an agent still opens from the explorer. -->
+    <section class="ie-home hidden" id="ie-home">
+      <div class="ie-home-card">
+        <h2 class="ie-home-title" data-i18n="plugin.image-editor.home.title"></h2>
+        <p class="ie-home-text" data-i18n="plugin.image-editor.home.text"></p>
+        <div class="ie-drop" id="ie-drop" role="group" data-i18n-aria-label="plugin.image-editor.home.drop">
+          <span class="ie-drop-icon" data-ie-icon="image-square" aria-hidden="true"></span>
+          <p class="ie-drop-text" data-i18n="plugin.image-editor.home.drop"></p>
+          <div class="ie-home-actions">
+            <button type="button" id="ie-home-open" data-ie-icon="folder-open" data-ie-label="plugin.image-editor.home.open" data-i18n-title="plugin.image-editor.openTitle"></button>
+            <button type="button" id="ie-home-paste" data-ie-icon="clipboard" data-ie-label="plugin.image-editor.home.paste"></button>
+          </div>
+          <p class="ie-drop-hint" id="ie-home-hint"></p>
+        </div>
+        <p class="ie-home-note" data-i18n="plugin.image-editor.home.note"></p>
+      </div>
+    </section>
+
     <div class="ie-body">
       <nav class="ie-rail" id="ie-rail" role="toolbar" data-i18n-aria-label="plugin.image-editor.tools">
         <button type="button" class="ie-tool" data-tool="select" data-ie-icon="cursor" data-i18n-title="plugin.image-editor.tool.select"></button>

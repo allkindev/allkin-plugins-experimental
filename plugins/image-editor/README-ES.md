@@ -7,10 +7,11 @@ comentar, una foto demasiado pesada, un detalle que ocultar antes de compartir.
 
 - **Una imagen de un agente o de la carpeta compartida**: en el explorador de archivos, clic
   derecho en la imagen › **Editar la imagen**. Se abre en su propia pestaña.
-- **Una imagen de este dispositivo**: lista Plugins del menú de Allkin › **Editor de imágenes**, o
-  el botón **Abrir** del editor. También se puede soltar un archivo en el editor o pegar una imagen
-  (Ctrl+V) cuando está visible.
-
+- **Una imagen de este dispositivo**: lista Herramientas del menú de Allkin › **Editor de imágenes**
+  abre la página de inicio: suelta una imagen en ella, pulsa **Pegar el portapapeles** (o Ctrl+V —
+  ⌘V en Mac — justo después de una captura de pantalla), o **Abrir un archivo…** con el selector de
+  archivos de tu dispositivo. El botón **Abrir** del editor, soltar y pegar funcionan también en
+  cualquiera de sus pestañas.
 ## Herramientas
 
 A la izquierda (abajo en el teléfono):
@@ -59,9 +60,9 @@ Ninguno.
 ## Si algo falla
 
 - *«Editar la imagen» no aparece en el explorador*: el explorador debe estar en 1.0.15 o más, y la
-  página recargada tras activar el plugin.
+  página recargada tras activar la herramienta.
 - *Copiar no funciona*: el navegador rechaza el portapapeles fuera de HTTPS; usa Exportar.
 - *Imagen muy grande*: el navegador puede quedarse sin memoria por encima de unos 16 000 píxeles de
   lado; redúcela antes.
 
-Plugin experimental: primer borrador, pendiente de validación.
+Herramienta experimental: primer borrador, pendiente de validación.

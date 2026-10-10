@@ -7,10 +7,10 @@ a photo too heavy to send, a detail to hide before sharing.
 
 - **An image of an agent or of the shared folder**: in the file explorer, right-click the image ›
   **Edit the image**. It opens in a tab of its own.
-- **An image of this device**: Plugins list of the Allkin menu › **Image editor**, or the editor's
-  **Open** button. You can also drop a file on the editor, or paste an image (Ctrl+V) while it is
-  shown.
-
+- **An image of this device**: Tools list of the Allkin menu › **Image editor** opens the start
+  page: drop an image on it, press **Paste the clipboard** (or Ctrl+V — ⌘V on a Mac — right after
+  a screenshot), or **Open a file…** through the file picker of your device. The editor's **Open**
+  button, a drop and a paste work on any of its tabs as well.
 ## Tools
 
 On the left (at the bottom on a phone):
@@ -59,9 +59,9 @@ None.
 ## When it does not work
 
 - *"Edit the image" is missing in the explorer*: the explorer must be 1.0.15 or later, and the page
-  reloaded after the plugin was activated.
+  reloaded after the tool was activated.
 - *Copy does not work*: the browser refuses the clipboard outside HTTPS; use Export.
 - *A very large image*: the browser may run out of memory past about 16,000 pixels a side; reduce
   it first.
 
-Experimental plugin: a first draft, to be validated.
+Experimental tool: a first draft, to be validated.

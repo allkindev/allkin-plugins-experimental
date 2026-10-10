@@ -206,6 +206,7 @@ Each entry becomes a field of the plugin's Configuration page.
   |------|-----|
   | `Allkin.registerTabKind(kind, def)` | a kind of tab: `panels`, `icon`, `label(tab)`, `tooltip(tab)`, `activate(tab)`, `leave(tab)`, `beforeClose(tab)`, `byPath`, `scroller()` |
   | `Allkin.registerApp({ key, name, meta, icon, open })` | an entry in the Plugins list of the Allkin menu |
+  | `Allkin.registerWidget({ key, name, description, icon, size, minSize, multiple, render(container, ctx) })` | optional: a widget the user can add to the home page; `ctx` = `{ id, options, setOptions(patch), editing, narrow }`, `render` may return `{ update(ctx), destroy() }` |
   | `Allkin.provide(name, impl)` / `Allkin.capability(name)` | offer / use a capability (`text-editor`, `markdown-editor`, `file-explorer`…) |
   | `Allkin.t(key, vars)` / `Allkin.tn(key, count)` / `Allkin.i18n` | translation (§10) |
   | `Allkin.core.api(path, options)` | Allkin's HTTP API, with the user's session |
@@ -310,6 +311,9 @@ French, English, Spanish, German.
   `-placeholder`, `-aria-label`); scripts call `Allkin.t()` / `Allkin.tn()`.
   English is the fallback.
 - **A service or a web page** picks its language from a setting of its own.
+- **Wording**: in every text the user reads, a plugin is called a **tool** —
+  *outil* in French, *herramienta* (feminine) in Spanish, *Tool* in German.
+  "Plugin" stays the technical name: `plugin.json`, `plugins/<id>/`, keys, code.
 - Code, comments and log lines are in English. Code never tests the wording of
   a message — a status, a code or an error class.
 

@@ -125,6 +125,41 @@
 .ie-empty button { display: inline-flex; align-items: center; gap: 6px; }
 .ie-empty button svg { width: 16px; height: 16px; }
 
+/* ---- Welcome page: shown in place of the body of the editor ---- */
+.ie-home {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-6) var(--sp-4);
+  background: var(--bg);
+}
+.ie-home.hidden { display: none; }
+.ie-view.is-home .ie-body { display: none; }
+.ie-view.is-home .ie-head button:not(#ie-open) { display: none; }
+.ie-home-card { width: min(560px, 100%); display: flex; flex-direction: column; gap: var(--sp-4); text-align: center; }
+.ie-home-title { margin: 0; font-size: var(--text-2xl); font-weight: 600; color: var(--text); }
+.ie-home-text, .ie-home-note { margin: 0; font-size: var(--text-sm); color: var(--text-dim); }
+.ie-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-8) var(--sp-4);
+  border: 2px dashed var(--border);
+  border-radius: var(--card-radius);
+  background: var(--bg-alt);
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.ie-drop.is-dropping { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.ie-drop-icon svg { width: 48px; height: 48px; color: var(--text-faint); }
+.ie-drop-text { margin: 0; font-size: var(--text-md); font-weight: 500; color: var(--text); }
+.ie-home-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--sp-2); }
+.ie-home-actions button { display: inline-flex; align-items: center; gap: 6px; }
+.ie-home-actions button svg { width: 16px; height: 16px; }
+.ie-drop-hint { margin: 0; font-size: var(--text-xs); color: var(--text-faint); }
+
 /* ---- Dialogs ---- */
 .ie-dialog-backdrop {
   position: fixed;

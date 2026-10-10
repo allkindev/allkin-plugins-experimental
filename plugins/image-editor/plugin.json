@@ -1,6 +1,6 @@
 {
   "name": "Éditeur d'images",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Recadrer, réduire, compresser et annoter une image : flèches, formes, texte, étapes numérotées, surligneur, pixelisation. Pour les images des agents, du dossier partagé ou de cet appareil.",
   "author": "Allkin",
   "permissions": [

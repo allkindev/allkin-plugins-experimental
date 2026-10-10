@@ -7,10 +7,11 @@ commenter, une photo trop lourde à alléger, un détail à masquer avant de par
 
 - **Image d'un agent ou du dossier partagé** : dans l'explorateur de fichiers, clic droit sur
   l'image › **Modifier l'image**. Elle s'ouvre dans un onglet à elle.
-- **Image de cet appareil** : liste Plugins du menu Allkin › **Éditeur d'images**, ou le bouton
-  **Ouvrir** de l'éditeur. On peut aussi déposer un fichier sur l'éditeur, ou coller une image
-  (Ctrl+V) quand il est affiché.
-
+- **Image de cet appareil** : liste Outils du menu Allkin › **Éditeur d'images** ouvre la page
+  d'accueil : déposez-y une image, appuyez sur **Coller le presse-papiers** (ou Ctrl+V — ⌘V sur
+  Mac — juste après une capture d'écran), ou **Ouvrir un fichier…** par le sélecteur de fichiers de
+  votre appareil. Le bouton **Ouvrir** de l'éditeur, un dépôt et un collage fonctionnent aussi sur
+  n'importe lequel de ses onglets.
 ## Les outils
 
 À gauche (en bas sur téléphone) :
@@ -61,9 +62,9 @@ Aucun.
 ## En cas de souci
 
 - *« Modifier l'image » n'apparaît pas dans l'explorateur* : l'explorateur doit être en 1.0.15 au
-  moins, et la page rechargée après l'activation du plugin.
+  moins, et la page rechargée après l'activation de l'outil.
 - *Copier ne marche pas* : le navigateur refuse le presse-papiers hors HTTPS ; utiliser Exporter.
 - *Image très grande* : le navigateur peut manquer de mémoire au-delà d'environ 16 000 pixels de
   côté ; la réduire d'abord.
 
-Plugin expérimental : premier jet, à valider.
+Outil expérimental : premier jet, à valider.
