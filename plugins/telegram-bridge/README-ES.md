@@ -9,7 +9,7 @@ respuesta en el chat. Cuando el agente quiere ejecutar un comando, llega con dos
 
 1. En Telegram, escribe a **@BotFather**: `/newbot`, un nombre, un identificador. Te da el
    **token** del bot.
-2. Pega el token en los ajustes del plugin y escribe tu **identificador de Telegram** en
+2. Pega el token en los ajustes de la herramienta y escribe tu **identificador de Telegram** en
    «Usuarios autorizados» (si no lo conoces: escribe al bot, te responde con tu identificador
    cuando no está en la lista; o pregúntale a **@userinfobot**).
 3. Elige el **agente por defecto** (su identificador, el de la URL de su página).
@@ -26,7 +26,7 @@ Escribe al bot: `/start` explica los comandos, todo lo demás va al agente.
 | `/new`        | empieza una conversación nueva con el mismo agente           |
 | `/who`        | el agente y la conversación de este chat                     |
 
-Cada chat de Telegram conserva su conversación: sobrevive a los reinicios del plugin y de Allkin,
+Cada chat de Telegram conserva su conversación: sobrevive a los reinicios de la herramienta y de Allkin,
 y aparece en el historial del agente en la interfaz. Una foto o un archivo enviado al bot se
 deposita en la carpeta **Upload** del agente, que es informado.
 
@@ -38,7 +38,7 @@ deposita en la carpeta **Upload** del agente, que es informado.
   una explicación.
 - Las validaciones de comandos desde Telegram pueden desactivarse en los ajustes: los comandos
   se rechazan entonces de entrada.
-- El plugin solo habla con `api.telegram.org`, salvo que apuntes a un servidor Bot API tuyo.
+- La herramienta solo habla con `api.telegram.org`, salvo que apuntes a un servidor Bot API tuyo.
 
 ## Permisos
 

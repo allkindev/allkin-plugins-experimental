@@ -9,7 +9,7 @@ er mit zwei Schaltflächen: **Erlauben** oder **Ablehnen**.
 
 1. Schreib in Telegram an **@BotFather**: `/newbot`, ein Name, ein Benutzername. Er gibt dir das
    **Token** des Bots.
-2. Füge das Token in die Plugin-Einstellungen ein und trage deine **Telegram-Id** unter
+2. Füge das Token in die Tool-Einstellungen ein und trage deine **Telegram-Id** unter
    „Erlaubte Nutzer“ ein (kennst du sie nicht: Schreib dem Bot, er antwortet mit deiner Id, wenn
    sie nicht in der Liste steht; oder frag **@userinfobot**).
 3. Wähle den **Standard-Agenten** (seine Id, die aus der URL seiner Seite).
@@ -26,7 +26,7 @@ Schreib dem Bot: `/start` erklärt die Befehle, alles andere geht an den Agenten
 | `/new`        | beginnt eine neue Unterhaltung mit demselben Agenten         |
 | `/who`        | Agent und Unterhaltung dieses Chats                          |
 
-Jeder Telegram-Chat behält seine Unterhaltung: Sie übersteht Neustarts des Plugins und von
+Jeder Telegram-Chat behält seine Unterhaltung: Sie übersteht Neustarts des Tools und von
 Allkin und erscheint im Verlauf des Agenten in der Oberfläche. Ein Foto oder eine Datei an den
 Bot landet im **Upload**-Ordner des Agenten, der davon erfährt.
 
@@ -38,7 +38,7 @@ Bot landet im **Upload**-Ordner des Agenten, der davon erfährt.
   werden mit einer Erklärung abgebrochen.
 - Freigaben aus Telegram lassen sich in den Einstellungen abschalten: Befehle werden dann sofort
   abgelehnt.
-- Das Plugin spricht nur mit `api.telegram.org`, es sei denn, du zeigst auf einen eigenen
+- Das Tool spricht nur mit `api.telegram.org`, es sei denn, du zeigst auf einen eigenen
   Bot-API-Server.
 
 ## Rechte

@@ -1,6 +1,6 @@
 # Home-Assistant-Brücke
 
-Deine Agenten reagieren auf das, was im Haus passiert. Das Plugin bleibt mit dem Websocket von
+Deine Agenten reagieren auf das, was im Haus passiert. Das Tool bleibt mit dem Websocket von
 Home Assistant verbunden und wendet **Regeln** an: Erreicht eine Entität einen Zustand (oder tritt
 ein Ereignis ein), weckt es den gewählten Agenten mit der Nachricht, die du geschrieben hast. Die
 Antwort des Agenten kommt nach Home Assistant zurück, als dauerhafte Benachrichtigung oder auf
@@ -9,7 +9,7 @@ dein Telefon.
 ## Einrichtung
 
 1. In Home Assistant: **Profil → Sicherheit → Langlebige Zugriffstoken → Token erstellen**.
-2. Adresse von Home Assistant und Token in die Plugin-Einstellungen einfügen.
+2. Adresse von Home Assistant und Token in die Tool-Einstellungen einfügen.
 3. Deine Regeln schreiben, eine pro Zeile.
 4. Die beiden Rechte erteilen, **Start als Dienst erlauben** anhaken, speichern.
 

@@ -83,7 +83,7 @@ window.Allkin.i18n.register("en", {
   "plugin.notes.trash.emptyText.other": "{count} elements leave it.",
   "plugin.notes.trash.emptied": "Bin emptied.",
   "plugin.notes.missing.title": "The Markdown editor is missing",
-  "plugin.notes.missing.text": "Notes are written in the “Markdown editor” plugin. It is installed with the notepad, but it only works once its right is granted on its page.",
+  "plugin.notes.missing.text": "Notes are written in the “Markdown editor” tool. It is installed with the notepad, but it only works once its right is granted on its page.",
   "plugin.notes.missing.open": "Open the page of the Markdown editor",
 });
 window.Allkin.i18n.register("fr", {
@@ -168,7 +168,7 @@ window.Allkin.i18n.register("fr", {
   "plugin.notes.trash.emptyText.other": "{count} éléments en sortent.",
   "plugin.notes.trash.emptied": "Corbeille vidée.",
   "plugin.notes.missing.title": "L'éditeur markdown est absent",
-  "plugin.notes.missing.text": "Les notes s'écrivent dans le plugin « Éditeur markdown ». Il est installé avec le bloc-notes, mais ne fonctionne qu'une fois son droit accordé sur sa page.",
+  "plugin.notes.missing.text": "Les notes s'écrivent dans l'outil « Éditeur markdown ». Il est installé avec le bloc-notes, mais ne fonctionne qu'une fois son droit accordé sur sa page.",
   "plugin.notes.missing.open": "Ouvrir la page de l'éditeur markdown",
 });
 window.Allkin.i18n.register("es", {
@@ -253,7 +253,7 @@ window.Allkin.i18n.register("es", {
   "plugin.notes.trash.emptyText.other": "Salen {count} elementos.",
   "plugin.notes.trash.emptied": "Papelera vaciada.",
   "plugin.notes.missing.title": "Falta el editor Markdown",
-  "plugin.notes.missing.text": "Las notas se escriben en el plugin «Editor Markdown». Se instala con el bloc de notas, pero solo funciona una vez concedido su permiso en su página.",
+  "plugin.notes.missing.text": "Las notas se escriben en la herramienta «Editor Markdown». Se instala con el bloc de notas, pero solo funciona una vez concedido su permiso en su página.",
   "plugin.notes.missing.open": "Abrir la página del editor Markdown",
 });
 window.Allkin.i18n.register("de", {
@@ -338,7 +338,7 @@ window.Allkin.i18n.register("de", {
   "plugin.notes.trash.emptyText.other": "{count} Elemente werden entfernt.",
   "plugin.notes.trash.emptied": "Papierkorb geleert.",
   "plugin.notes.missing.title": "Der Markdown-Editor fehlt",
-  "plugin.notes.missing.text": "Notizen werden im Plugin „Markdown-Editor“ geschrieben. Es wird mit dem Notizblock installiert, funktioniert aber erst, wenn sein Recht auf seiner Seite gewährt wurde.",
+  "plugin.notes.missing.text": "Notizen werden im Tool „Markdown-Editor“ geschrieben. Es wird mit dem Notizblock installiert, funktioniert aber erst, wenn sein Recht auf seiner Seite gewährt wurde.",
   "plugin.notes.missing.open": "Seite des Markdown-Editors öffnen",
 });
 })();

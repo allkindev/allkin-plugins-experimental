@@ -8,19 +8,19 @@ Jede Notiz ist eine `.md`-Datei, jeder Ordner ein echter Ordner im gemeinsamen O
 (`~/.allkin/share/notes/`). Deine Agenten lesen und schreiben also dieselben Notizen: „Leg das
 Protokoll in meinen Notizen ab, Ordner Besprechungen“ funktioniert genau so.
 
-## Dieses Plugin benötigt den Markdown-Editor
+## Dieses Tool benötigt den Markdown-Editor
 
-Der Notizblock bearbeitet den Text nicht selbst: Er stützt sich auf das Plugin **Markdown-Editor**
+Der Notizblock bearbeitet den Text nicht selbst: Er stützt sich auf das Tool **Markdown-Editor**
 (`markdown-editor`). Ist es noch nicht vorhanden, **installiert Allkin es automatisch mit** – das
-Installationsfenster sagt es dir, bevor es losgeht. Wie jedes Plugin kommt es ohne Rechte an:
+Installationsfenster sagt es dir, bevor es losgeht. Wie jedes Tool kommt es ohne Rechte an:
 Gewähre ihm sein Recht „Oberfläche“ auf seiner Seite, sonst zeigt der Notizblock einen Bildschirm,
-der dich dorthin führt. (Der Markdown-Editor wird mit Allkin ausgeliefert: Meist ist er bereits
+der dich dorthin führt. (Der Markdown-Editor ist ein integriertes Tool von Allkin: Er ist immer
 installiert und zugelassen.)
 
 ## Erste Schritte
 
-1. Installiere das Plugin, gewähre ihm sein Recht auf seiner Seite und lade Allkin neu.
-2. Öffne **Notizen** in der Plugin-Liste des Allkin-Menüs.
+1. Installiere das Tool, gewähre ihm sein Recht auf seiner Seite und lade Allkin neu.
+2. Öffne **Notizen** in der Tool-Liste des Allkin-Menüs.
 3. **Notiz** legt eine Notiz im angezeigten Ordner an: Titel eingeben, dann Enter zum Schreiben.
 
 Der Bildschirm hat drei Bereiche: die Ordner, die Notizen des Ordners, die Notiz. Auf einem
@@ -66,11 +66,11 @@ Keine.
 
 ## Angefordertes Recht
 
-- **Oberfläche von Allkin** – das Plugin läuft in der Seite von Allkin, mit deiner Sitzung: Es fügt
-  seinen Tab und seinen Eintrag in der Plugin-Liste hinzu. Es hat weder Dienst noch Agent und
+- **Oberfläche von Allkin** – das Tool läuft in der Seite von Allkin, mit deiner Sitzung: Es fügt
+  seinen Tab und seinen Eintrag in der Tool-Liste hinzu. Es hat weder Dienst noch Agent und
   schreibt nur in seinen Ordner im gemeinsamen Ordner.
 
-## Für andere Plugins
+## Für andere Tools
 
 ```js
 Allkin.capability("notes").open();
@@ -79,7 +79,7 @@ const path = await Allkin.capability("notes").create({ title: "Idee", content: "
 
 ## Wenn es nicht funktioniert
 
-- **„Der Markdown-Editor fehlt“** – das Plugin Markdown-Editor ist nicht installiert oder sein Recht
+- **„Der Markdown-Editor fehlt“** – das Tool Markdown-Editor ist nicht installiert oder sein Recht
   ist nicht gewährt. Die Schaltfläche des Bildschirms öffnet seine Seite; Recht gewähren, dann neu
   laden.
 - **Der Tab erscheint nicht** – das Recht „Oberfläche“ des Notizblocks ist nicht gewährt, oder die

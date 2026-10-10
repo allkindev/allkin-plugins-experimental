@@ -1,6 +1,6 @@
 # Pont Home Assistant
 
-Tes agents réagissent à ce qui se passe dans la maison. Le plugin reste connecté au websocket de
+Tes agents réagissent à ce qui se passe dans la maison. L'outil reste connecté au websocket de
 Home Assistant et applique des **règles** : quand telle entité passe dans tel état (ou quand tel
 événement survient), il réveille l'agent de ton choix avec le message que tu as écrit. La réponse
 de l'agent revient dans Home Assistant, en notification persistante ou sur ton téléphone.
@@ -8,7 +8,7 @@ de l'agent revient dans Home Assistant, en notification persistante ou sur ton t
 ## Mise en route
 
 1. Dans Home Assistant : **Profil → Sécurité → Jetons d'accès longue durée → Créer un jeton**.
-2. Colle l'adresse de Home Assistant et le jeton dans les réglages du plugin.
+2. Colle l'adresse de Home Assistant et le jeton dans les réglages de l'outil.
 3. Écris tes règles, une par ligne.
 4. Accorde les deux droits, coche **Autoriser le démarrage en service**, enregistre.
 

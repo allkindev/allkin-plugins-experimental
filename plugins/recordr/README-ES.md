@@ -9,8 +9,8 @@ reconocimiento lo hace un **servicio de audio** conectado a Allkin — hoy
 
 1. **Servicios › Añadir › Soniox**: pegar la clave API creada en
    [console.soniox.com](https://console.soniox.com). Es el mismo gesto que para un servicio de
-   imágenes: la clave la guarda Allkin, no el plugin.
-2. En la página del plugin, conceder el permiso **Red**, elegir ese servicio en **Servicio de
+   imágenes: la clave la guarda Allkin, no la herramienta.
+2. En la página de la herramienta, conceder el permiso **Red**, elegir ese servicio en **Servicio de
    audio** y el **idioma hablado** (indicado, mejora el reconocimiento).
 3. Marcar **Autorizar el inicio como servicio** y guardar.
 4. **Abrir la página**, pulsar **Escuchar** y autorizar el micrófono cuando el navegador lo pida.
@@ -59,12 +59,12 @@ Pulsar **Escuchar** con una transcripción en pantalla empieza una nueva.
 
 La clave del servicio de audio no sale de Allkin. En cada escucha, la página pide a Allkin una
 **clave temporal** (dos minutos, el tiempo de abrir la conexión); el audio va después del navegador
-directamente al servicio, sin pasar por la máquina de Allkin. El plugin no ve ninguna clave: su
+directamente al servicio, sin pasar por la máquina de Allkin. La herramienta no ve ninguna clave: su
 servicio solo sirve la página y guarda las transcripciones.
 
 ## Límites
 
-- **Cerrar la pestaña del plugin en Allkin, o recargar la página, detiene la escucha.** Lo transcrito
+- **Cerrar la pestaña de la herramienta en Allkin, o recargar la página, detiene la escucha.** Lo transcrito
   ya está guardado.
 - **Un solo micrófono para varias personas**: cuando se interrumpen o están lejos del micrófono, la
   atribución falla. Un micrófono de mesa en el centro ayuda mucho.

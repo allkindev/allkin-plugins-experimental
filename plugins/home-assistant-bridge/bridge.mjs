@@ -27,9 +27,9 @@ const fail = (message) => {
   console.error(message);
   process.exit(1);
 };
-if (!haUrl) fail("The Home Assistant address is empty: set it in the plugin's settings.");
-if (!token) fail("The long-lived access token is empty: set it in the plugin's settings.");
-if (!socketPath) fail("ALLKIN_SOCKET is missing: the plugin needs the \"agents\" right to reach the agents.");
+if (!haUrl) fail("The Home Assistant address is empty: set it in the tool's settings.");
+if (!token) fail("The long-lived access token is empty: set it in the tool's settings.");
+if (!socketPath) fail("ALLKIN_SOCKET is missing: the tool needs the \"agents\" right to reach the agents.");
 mkdirSync(dataDir, { recursive: true });
 
 const log = (...args) => console.log(new Date().toISOString(), ...args);

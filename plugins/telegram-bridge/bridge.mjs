@@ -29,8 +29,8 @@ const defaultAgent = String(settings.defaultAgent ?? "").trim();
 const approvalsFromChat = settings.approvals !== false;
 const language = ["en", "fr", "es", "de"].includes(settings.language) ? settings.language : "en";
 
-if (!token) fail("The bot token is empty: set it in the plugin's settings.");
-if (!socketPath) fail("ALLKIN_SOCKET is missing: the plugin needs the \"agents\" right to reach the agents.");
+if (!token) fail("The bot token is empty: set it in the tool's settings.");
+if (!socketPath) fail("ALLKIN_SOCKET is missing: the tool needs the \"agents\" right to reach the agents.");
 if (allowed.size === 0) fail("No allowed Telegram user: set at least one user id in the settings.");
 mkdirSync(dataDir, { recursive: true });
 
@@ -49,7 +49,7 @@ const TEXTS = {
     unknownAgent: "No agent named {id}. /agents lists them.",
     newSession: "New conversation with {name}.",
     who: "Agent: {name} ({id})\nConversation: {session}",
-    noAgent: "No agent is set for this chat: use /agent <id>, or set a default agent in the plugin's settings.",
+    noAgent: "No agent is set for this chat: use /agent <id>, or set a default agent in the tool's settings.",
     unreachable: "Allkin does not answer right now: try again in a moment.",
     error: "⚠️ {message}",
     proposal: "The agent wants to run a command ({risk}):\n\n{command}\n\n{explanation}",
@@ -71,7 +71,7 @@ const TEXTS = {
     unknownAgent: "Aucun agent nommé {id}. /agents les liste.",
     newSession: "Nouvelle conversation avec {name}.",
     who: "Agent : {name} ({id})\nConversation : {session}",
-    noAgent: "Aucun agent n'est réglé pour ce chat : utilise /agent <id>, ou règle un agent par défaut dans les réglages du plugin.",
+    noAgent: "Aucun agent n'est réglé pour ce chat : utilise /agent <id>, ou règle un agent par défaut dans les réglages de l'outil.",
     unreachable: "Allkin ne répond pas pour le moment : réessaie dans un instant.",
     error: "⚠️ {message}",
     proposal: "L'agent veut lancer une commande ({risk}) :\n\n{command}\n\n{explanation}",
@@ -93,7 +93,7 @@ const TEXTS = {
     unknownAgent: "No hay ningún agente llamado {id}. /agents los lista.",
     newSession: "Nueva conversación con {name}.",
     who: "Agente: {name} ({id})\nConversación: {session}",
-    noAgent: "No hay agente configurado para este chat: usa /agent <id>, o fija un agente por defecto en los ajustes del plugin.",
+    noAgent: "No hay agente configurado para este chat: usa /agent <id>, o fija un agente por defecto en los ajustes de la herramienta.",
     unreachable: "Allkin no responde ahora mismo: inténtalo de nuevo en un momento.",
     error: "⚠️ {message}",
     proposal: "El agente quiere ejecutar un comando ({risk}):\n\n{command}\n\n{explanation}",
@@ -115,7 +115,7 @@ const TEXTS = {
     unknownAgent: "Kein Agent namens {id}. /agents listet sie auf.",
     newSession: "Neue Unterhaltung mit {name}.",
     who: "Agent: {name} ({id})\nUnterhaltung: {session}",
-    noAgent: "Für diesen Chat ist kein Agent eingestellt: nutze /agent <id>, oder lege in den Plugin-Einstellungen einen Standard-Agenten fest.",
+    noAgent: "Für diesen Chat ist kein Agent eingestellt: nutze /agent <id>, oder lege in den Tool-Einstellungen einen Standard-Agenten fest.",
     unreachable: "Allkin antwortet gerade nicht: versuche es gleich noch einmal.",
     error: "⚠️ {message}",
     proposal: "Der Agent will einen Befehl ausführen ({risk}):\n\n{command}\n\n{explanation}",

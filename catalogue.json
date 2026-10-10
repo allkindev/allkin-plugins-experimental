@@ -660,7 +660,7 @@
     {
       "id": "clear-answers",
       "name": "clear-answers",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Use for every answer longer than a few lines, and whenever the user asks to shorten, clarify, restructure or \"make it readable\". Rules for answers that are read once on a screen or a phone: the point first, short sentences, lists for parallel items, no padding.",
       "author": "Allkin",
       "validation": {
@@ -713,7 +713,7 @@
         {
           "path": "skill.json",
           "size": 1035,
-          "sha256": "95db52f06f2ff7fde0d43bcae303696f5e3b22350029b986b6fcae6aa7821dbd"
+          "sha256": "239e022e63fdbe4c8e7912a53edce3debb3cb8d6fdca2c67b23048c78bb6ab1a"
         },
         {
           "path": "validation.json",
@@ -725,7 +725,7 @@
     {
       "id": "code-review",
       "name": "code-review",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Use when the user asks to review, check, audit or critique code, a diff, a pull request or a script, or asks \"is this correct / safe / good\". Produces findings ranked by severity, each with the line and a concrete failure case.",
       "author": "Allkin",
       "validation": {
@@ -778,7 +778,7 @@
         {
           "path": "skill.json",
           "size": 905,
-          "sha256": "c2b083a9a4114bda93ddd87e7ec62efebda7ac4131ac63d23a2087507b0c924d"
+          "sha256": "50d7031527b7beedb8a07477e685199e656f4fa8bdbd543891296782ef50c26f"
         },
         {
           "path": "validation.json",
@@ -790,7 +790,7 @@
     {
       "id": "email-drafting",
       "name": "email-drafting",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Use when the user asks to write, reply to, rephrase or soften an e-mail, a letter or a message to someone — a client, a supplier, a colleague, an administration. Produces a ready-to-send draft with subject line, in the right register.",
       "author": "Allkin",
       "validation": {
@@ -843,7 +843,7 @@
         {
           "path": "skill.json",
           "size": 992,
-          "sha256": "d49357c87096a2c9e2c72111b1662a3135f0223d79e5a0dcacb7792abfc0e7cc"
+          "sha256": "db4b73a0462ead2d612d47e23243c2a32c1c804ec050822e9813103578aa3c5f"
         },
         {
           "path": "validation.json",
@@ -855,7 +855,7 @@
     {
       "id": "incident-report",
       "name": "incident-report",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Use when something is broken or slow on a machine or a service — \"it does not work\", \"the site is down\", \"the disk is full\", an error in a log — and the user wants it diagnosed, fixed or written up. Drives a step-by-step diagnosis and produces an incident report.",
       "author": "Allkin",
       "validation": {
@@ -908,7 +908,7 @@
         {
           "path": "skill.json",
           "size": 1020,
-          "sha256": "6ac54658a8e83df2d770a4521e84f26f5ad53f77b6c8b1b252123884b8ec8266"
+          "sha256": "fcade6a7ef52a47a3e0f34271d5c46deddc69fe8dbbe640dfafd2a2c9fb309b7"
         },
         {
           "path": "validation.json",
@@ -920,7 +920,7 @@
     {
       "id": "markdown-tables",
       "name": "markdown-tables",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Use when the answer compares several items along the same criteria, lists options with their properties, or when the user asks for a table. Produces a Markdown table that reads well in Allkin's conversation.",
       "author": "Allkin",
       "validation": {
@@ -973,7 +973,7 @@
         {
           "path": "skill.json",
           "size": 939,
-          "sha256": "e25d99c72d49f04d54f42fe1de7109dd37293ef61a2f3edcfc3dc55c81b5692b"
+          "sha256": "e2460a79875bc0faa9368861b2e33d6810e4eab327acd0dafa6199346d4cb245"
         },
         {
           "path": "validation.json",
@@ -985,7 +985,7 @@
     {
       "id": "meeting-notes",
       "name": "meeting-notes",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Use when the user hands over a transcript, a recording's text or rough notes of a meeting and wants minutes, a summary, the decisions or the action items. Produces structured minutes with owners and deadlines.",
       "author": "Allkin",
       "validation": {
@@ -1038,7 +1038,7 @@
         {
           "path": "skill.json",
           "size": 969,
-          "sha256": "3fb3a41f4d5f38acae4b756ac7a60c9fae160ff73df6497ccd13e0c6ff2d5a7c"
+          "sha256": "48d4cb6e9fbd38d18570096fd8bf329b5c53f5202cb11dfc7fa7a7f8057749c7"
         },
         {
           "path": "validation.json",
@@ -1050,7 +1050,7 @@
     {
       "id": "project-plan",
       "name": "project-plan",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Use when the user states a goal, a project or a piece of work to organise and wants a plan, milestones, a task list, a schedule or a risk review. Produces a plan file that can be followed and updated.",
       "author": "Allkin",
       "validation": {
@@ -1103,7 +1103,7 @@
         {
           "path": "skill.json",
           "size": 862,
-          "sha256": "2af597d76796fd993df1d9ba76b7e4f96429ee15d13abb6f30f7f8237b868c64"
+          "sha256": "c5789c0a13523534b76103adf8e075cb33ab5e1dac40945acbf367377f350886"
         },
         {
           "path": "validation.json",
@@ -1115,7 +1115,7 @@
     {
       "id": "research-brief",
       "name": "research-brief",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "description": "Use when the user asks to look something up, compare products or options, check a fact, find out \"what is the state of\", or wants a summary of what is known on a topic. Needs web access. Produces a short brief with sources, dated.",
       "author": "Allkin",
       "validation": {
@@ -1168,7 +1168,7 @@
         {
           "path": "skill.json",
           "size": 1053,
-          "sha256": "ca340ee75e6f50a06c91934d6ed6841dd33a1c29c9c8ec3d7210b8b5f23de2b8"
+          "sha256": "2b06a7b4fb71b88de0235118cd4b65eea82fcfacac97d049e3d26281d02c7cd8"
         },
         {
           "path": "validation.json",

@@ -1,6 +1,6 @@
 {
   "name": "Recordr",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Écoute le micro, transcrit ce qui se dit au fil de la parole et distingue les interlocuteurs. La reconnaissance est faite par le service audio que tu choisis.",
   "author": "Allkin",
   "permissions": [
@@ -21,7 +21,7 @@
       "type": "service",
       "capability": "speech",
       "required": true,
-      "help": "Le service connecté qui transcrit la parole. Il s'ajoute dans Services (Soniox) ; sa clé reste dans Allkin, le plugin ne la voit jamais."
+      "help": "Le service connecté qui transcrit la parole. Il s'ajoute dans Services (Soniox) ; sa clé reste dans Allkin, l'outil ne la voit jamais."
     },
     {
       "key": "language",
@@ -62,7 +62,7 @@
       },
       "settings": {
         "port": { "label": "Local port", "help": "The port the service listens on, on 127.0.0.1 only: the page goes through Allkin." },
-        "audioService": { "label": "Audio service", "help": "The connected service that transcribes speech. It is added in Services (Soniox); its key stays in Allkin, the plugin never sees it." },
+        "audioService": { "label": "Audio service", "help": "The connected service that transcribes speech. It is added in Services (Soniox); its key stays in Allkin, the tool never sees it." },
         "language": { "label": "Spoken language", "help": "Given, it improves recognition. “Automatic” lets the service recognise it, including when it changes along the way.", "options": { "auto": "Automatic", "fr": "Français", "en": "English", "es": "Español", "de": "Deutsch" } },
         "model": { "label": "Model", "placeholder": "the service's own", "help": "Empty = the audio service's default real-time model. Only to fill in to impose another one." }
       }
@@ -75,7 +75,7 @@
       },
       "settings": {
         "port": { "label": "Puerto local", "help": "Puerto en el que escucha el servicio, solo en 127.0.0.1: la página pasa por Allkin." },
-        "audioService": { "label": "Servicio de audio", "help": "El servicio conectado que transcribe la voz. Se añade en Servicios (Soniox); su clave se queda en Allkin, el plugin nunca la ve." },
+        "audioService": { "label": "Servicio de audio", "help": "El servicio conectado que transcribe la voz. Se añade en Servicios (Soniox); su clave se queda en Allkin, la herramienta nunca la ve." },
         "language": { "label": "Idioma hablado", "help": "Indicado, mejora el reconocimiento. «Automático» deja que el servicio lo reconozca, incluso cuando cambia sobre la marcha.", "options": { "auto": "Automático", "fr": "Français", "en": "English", "es": "Español", "de": "Deutsch" } },
         "model": { "label": "Modelo", "placeholder": "el del servicio", "help": "Vacío = el modelo en tiempo real por defecto del servicio de audio. Solo se rellena para imponer otro." }
       }
@@ -88,7 +88,7 @@
       },
       "settings": {
         "port": { "label": "Lokaler Port", "help": "Der Port, auf dem der Dienst lauscht, nur auf 127.0.0.1: Die Seite läuft über Allkin." },
-        "audioService": { "label": "Audiodienst", "help": "Der verbundene Dienst, der Sprache transkribiert. Er wird unter Dienste hinzugefügt (Soniox); sein Schlüssel bleibt in Allkin, das Plugin sieht ihn nie." },
+        "audioService": { "label": "Audiodienst", "help": "Der verbundene Dienst, der Sprache transkribiert. Er wird unter Dienste hinzugefügt (Soniox); sein Schlüssel bleibt in Allkin, das Tool sieht ihn nie." },
         "language": { "label": "Gesprochene Sprache", "help": "Angegeben verbessert sie die Erkennung. „Automatisch“ lässt den Dienst sie erkennen, auch wenn sie unterwegs wechselt.", "options": { "auto": "Automatisch", "fr": "Français", "en": "English", "es": "Español", "de": "Deutsch" } },
         "model": { "label": "Modell", "placeholder": "das des Dienstes", "help": "Leer = das Standard-Echtzeitmodell des Audiodienstes. Nur ausfüllen, um ein anderes vorzugeben." }
       }

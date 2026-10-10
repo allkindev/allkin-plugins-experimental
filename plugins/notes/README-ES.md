@@ -8,19 +8,19 @@ Cada nota es un archivo `.md` y cada carpeta una carpeta real, en la carpeta com
 (`~/.allkin/share/notes/`). Tus agentes leen y escriben, por tanto, las mismas notas: «guarda el
 acta en mis notas, carpeta Reuniones» funciona tal cual.
 
-## Este plugin necesita el editor Markdown
+## Esta herramienta necesita el editor Markdown
 
-El bloc de notas no edita el texto por sí mismo: se apoya en el plugin **Editor Markdown**
-(`markdown-editor`). Si aún no está, **Allkin lo instala automáticamente al mismo tiempo**; la
-ventana de instalación te lo indica antes de empezar. Como cualquier plugin, llega sin ningún
+El bloc de notas no edita el texto por sí mismo: se apoya en la herramienta **Editor Markdown**
+(`markdown-editor`). Si aún no está, **Allkin la instala automáticamente al mismo tiempo**; la
+ventana de instalación te lo indica antes de empezar. Como cualquier herramienta, llega sin ningún
 permiso: concédele su permiso «Interfaz» en su página; de lo contrario, el bloc de notas muestra
-una pantalla que te lleva allí. (El editor Markdown viene con Allkin: en la mayoría de los casos ya
+una pantalla que te lleva allí. (El editor Markdown es una herramienta integrada de Allkin: siempre
 está instalado y autorizado.)
 
 ## Primeros pasos
 
-1. Instala el plugin, concédele su permiso en su página y recarga Allkin.
-2. Abre **Bloc de notas** en la lista de plugins del menú Allkin.
+1. Instala la herramienta, concédele su permiso en su página y recarga Allkin.
+2. Abre **Bloc de notas** en la lista de herramientas del menú Allkin.
 3. **Nota** crea una nota en la carpeta mostrada: escribe su título y pulsa Intro para escribir.
 
 La pantalla tiene tres paneles: las carpetas, las notas de la carpeta y la nota. En un teléfono, un
@@ -65,11 +65,11 @@ Ninguno.
 
 ## Permiso solicitado
 
-- **Interfaz de Allkin** — el plugin se ejecuta en la página de Allkin, con tu sesión: añade su
-  pestaña y su entrada en la lista de plugins. No tiene servicio ni agente, y solo escribe en su
+- **Interfaz de Allkin** — la herramienta se ejecuta en la página de Allkin, con tu sesión: añade su
+  pestaña y su entrada en la lista de herramientas. No tiene servicio ni agente, y solo escribe en su
   carpeta de la carpeta compartida.
 
-## Para otros plugins
+## Para otras herramientas
 
 ```js
 Allkin.capability("notes").open();
@@ -78,7 +78,7 @@ const path = await Allkin.capability("notes").create({ title: "Idea", content: "
 
 ## Si no funciona
 
-- **«Falta el editor Markdown»** — el plugin Editor Markdown no está instalado o su permiso no está
+- **«Falta el editor Markdown»** — la herramienta Editor Markdown no está instalada o su permiso no está
   concedido. El botón de la pantalla abre su página; concede el permiso y recarga.
 - **La pestaña no aparece** — el permiso «Interfaz» del bloc de notas no está concedido, o la
   página no se ha recargado desde entonces.

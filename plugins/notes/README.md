@@ -8,19 +8,19 @@ Chaque note est un fichier `.md`, chaque dossier un vrai dossier, dans le dossie
 (`~/.allkin/share/notes/`). Vos agents lisent et écrivent donc les mêmes notes : « range le
 compte rendu dans mes notes, dossier Réunions » fonctionne tel quel.
 
-## Ce plugin a besoin de l'éditeur markdown
+## Cet outil a besoin de l'éditeur markdown
 
-Le bloc-notes n'édite pas le texte lui-même : il s'appuie sur le plugin **Éditeur markdown**
+Le bloc-notes n'édite pas le texte lui-même : il s'appuie sur l'outil **Éditeur markdown**
 (`markdown-editor`). S'il n'est pas déjà là, **Allkin l'installe automatiquement en même temps** —
-la fenêtre d'installation vous le dit avant de commencer. Comme tout plugin, il arrive sans aucun
+la fenêtre d'installation vous le dit avant de commencer. Comme tout outil, il arrive sans aucun
 droit : accordez-lui son droit « Interface » sur sa page, sinon le bloc-notes affiche un écran qui
-vous y conduit. (L'éditeur markdown est livré avec Allkin : dans la plupart des cas il est déjà
+vous y conduit. (L'éditeur markdown est un outil intégré d'Allkin : il est toujours
 installé et autorisé.)
 
 ## Commencer
 
-1. Installez le plugin, puis accordez-lui son droit sur sa page et rechargez Allkin.
-2. Ouvrez **Bloc-notes** dans la liste des plugins du menu Allkin.
+1. Installez l'outil, puis accordez-lui son droit sur sa page et rechargez Allkin.
+2. Ouvrez **Bloc-notes** dans la liste des outils du menu Allkin.
 3. **Note** crée une note dans le dossier affiché : tapez son titre, puis Entrée pour écrire.
 
 L'écran a trois volets : les dossiers, les notes du dossier, la note. Sur un smartphone, un seul
@@ -65,11 +65,11 @@ Aucun.
 
 ## Droit demandé
 
-- **Interface d'Allkin** — le plugin s'exécute dans la page d'Allkin, avec votre session : il y
-  ajoute son onglet et son entrée dans la liste des plugins. Il n'a ni service ni agent, et n'écrit
+- **Interface d'Allkin** — l'outil s'exécute dans la page d'Allkin, avec votre session : il y
+  ajoute son onglet et son entrée dans la liste des outils. Il n'a ni service ni agent, et n'écrit
   que dans son dossier du dossier partagé.
 
-## Pour les autres plugins
+## Pour les autres outils
 
 ```js
 Allkin.capability("notes").open();
@@ -78,7 +78,7 @@ const path = await Allkin.capability("notes").create({ title: "Idée", content: 
 
 ## Si cela ne fonctionne pas
 
-- **« L'éditeur markdown est absent »** — le plugin Éditeur markdown n'est pas installé, ou son
+- **« L'éditeur markdown est absent »** — l'outil Éditeur markdown n'est pas installé, ou son
   droit n'est pas accordé. Le bouton de l'écran ouvre sa page ; accordez le droit, puis rechargez.
 - **L'onglet n'apparaît pas** — le droit « Interface » du bloc-notes n'est pas accordé, ou la page
   n'a pas été rechargée depuis.

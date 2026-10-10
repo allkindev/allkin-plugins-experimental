@@ -1,6 +1,6 @@
 # Puente Home Assistant
 
-Tus agentes reaccionan a lo que pasa en casa. El plugin permanece conectado al websocket de Home
+Tus agentes reaccionan a lo que pasa en casa. La herramienta permanece conectada al websocket de Home
 Assistant y aplica **reglas**: cuando una entidad pasa a un estado (o ocurre un evento), despierta
 al agente que elijas con el mensaje que escribiste. La respuesta del agente vuelve a Home
 Assistant, como notificación persistente o en tu teléfono.
@@ -8,7 +8,7 @@ Assistant, como notificación persistente o en tu teléfono.
 ## Puesta en marcha
 
 1. En Home Assistant: **Perfil → Seguridad → Tokens de acceso de larga duración → Crear token**.
-2. Pega la dirección de Home Assistant y el token en los ajustes del plugin.
+2. Pega la dirección de Home Assistant y el token en los ajustes de la herramienta.
 3. Escribe tus reglas, una por línea.
 4. Concede los dos permisos, marca **Permitir el arranque como servicio**, guarda.
 

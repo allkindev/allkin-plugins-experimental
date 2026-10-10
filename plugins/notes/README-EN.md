@@ -7,18 +7,18 @@ Each note is a `.md` file, each folder a real folder, in the shared folder
 (`~/.allkin/share/notes/`). Your agents therefore read and write the same notes: “file the minutes
 in my notes, folder Meetings” works as it is.
 
-## This plugin needs the Markdown editor
+## This tool needs the Markdown editor
 
-The notepad does not edit text itself: it relies on the **Markdown editor** plugin
+The notepad does not edit text itself: it relies on the **Markdown editor** tool
 (`markdown-editor`). If it is not there yet, **Allkin installs it automatically at the same time** —
-the installation window tells you so before starting. Like any plugin, it arrives with no right:
+the installation window tells you so before starting. Like any tool, it arrives with no right:
 grant its “Interface” right on its page, otherwise the notepad shows a screen that takes you there.
-(The Markdown editor ships with Allkin: in most cases it is already installed and allowed.)
+(The Markdown editor is one of Allkin's built-in tools: it is always installed and allowed.)
 
 ## Getting started
 
-1. Install the plugin, grant its right on its page and reload Allkin.
-2. Open **Notes** in the list of plugins of the Allkin menu.
+1. Install the tool, grant its right on its page and reload Allkin.
+2. Open **Notes** in the list of tools of the Allkin menu.
 3. **Note** creates a note in the folder shown: type its title, then Enter to write.
 
 The screen has three panes: the folders, the notes of the folder, the note. On a phone, one pane at
@@ -63,11 +63,11 @@ None.
 
 ## Right requested
 
-- **Allkin's interface** — the plugin runs in Allkin's page, with your session: it adds its tab and
-  its entry in the list of plugins. It has neither a service nor an agent, and writes only in its
+- **Allkin's interface** — the tool runs in Allkin's page, with your session: it adds its tab and
+  its entry in the list of tools. It has neither a service nor an agent, and writes only in its
   folder of the shared folder.
 
-## For other plugins
+## For other tools
 
 ```js
 Allkin.capability("notes").open();
@@ -76,7 +76,7 @@ const path = await Allkin.capability("notes").create({ title: "Idea", content: "
 
 ## When it does not work
 
-- **“The Markdown editor is missing”** — the Markdown editor plugin is not installed, or its right
+- **“The Markdown editor is missing”** — the Markdown editor tool is not installed, or its right
   is not granted. The button of the screen opens its page; grant the right, then reload.
 - **The tab does not appear** — the “Interface” right of the notepad is not granted, or the page was
   not reloaded since.

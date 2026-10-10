@@ -9,7 +9,7 @@ answer back in the chat. When the agent wants to run a command, it comes with tw
 
 1. In Telegram, write to **@BotFather**: `/newbot`, a name, a username. It gives you the bot's
    **token**.
-2. Paste the token in the plugin's settings, then write your **Telegram id** in "Allowed users"
+2. Paste the token in the tool's settings, then write your **Telegram id** in "Allowed users"
    (if you do not know it: write to the bot, it answers with your id when it is not in the list;
    or ask **@userinfobot**).
 3. Pick the **default agent** (its id, the one in the URL of its page).
@@ -26,7 +26,7 @@ Write to the bot: `/start` explains the commands, everything else goes to the ag
 | `/new`        | starts a fresh conversation with the same agent              |
 | `/who`        | the agent and the conversation of this chat                  |
 
-Each Telegram chat keeps its conversation: it survives restarts of the plugin and of Allkin, and
+Each Telegram chat keeps its conversation: it survives restarts of the tool and of Allkin, and
 shows in the agent's history in the interface. A photo or a file sent to the bot is dropped into
 the agent's **Upload** folder, and the agent is told.
 
@@ -38,7 +38,7 @@ the agent's **Upload** folder, and the agent is told.
   word of explanation.
 - Approving commands from Telegram can be switched off in the settings: commands are then refused
   outright.
-- The plugin only talks to `api.telegram.org`, unless you point it at a Bot API server of yours.
+- The tool only talks to `api.telegram.org`, unless you point it at a Bot API server of yours.
 
 ## Rights
 

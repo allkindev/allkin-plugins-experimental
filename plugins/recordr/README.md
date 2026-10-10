@@ -9,8 +9,8 @@ un service en ligne payant à l'usage.
 
 1. **Services › Ajouter › Soniox** : coller la clé API créée sur
    [console.soniox.com](https://console.soniox.com). C'est le même geste que pour un service
-   d'images : la clé est gardée par Allkin, pas par le plugin.
-2. Sur la page du plugin, accorder le droit **Réseau**, choisir ce service dans **Service audio**
+   d'images : la clé est gardée par Allkin, pas par l'outil.
+2. Sur la page de l'outil, accorder le droit **Réseau**, choisir ce service dans **Service audio**
    et la **langue parlée** (indiquée, elle améliore la reconnaissance).
 3. Cocher **Autoriser le démarrage en service**, puis enregistrer.
 4. **Ouvrir la page**, appuyer sur **Écouter** et autoriser le micro quand le navigateur le demande.
@@ -60,12 +60,12 @@ Appuyer sur **Écouter** alors qu'une transcription est affichée en commence un
 
 La clé du service audio ne quitte pas Allkin. À chaque écoute, la page demande à Allkin une
 **clé temporaire** (deux minutes, le temps d'ouvrir la connexion) ; l'audio part ensuite du
-navigateur directement chez le service, sans passer par la machine d'Allkin. Le plugin lui-même
+navigateur directement chez le service, sans passer par la machine d'Allkin. L'outil lui-même
 ne voit aucune clé : son service ne fait que servir la page et garder les transcriptions.
 
 ## Limites
 
-- **Fermer l'onglet du plugin dans Allkin, ou recharger la page, arrête l'écoute.** Ce qui était
+- **Fermer l'onglet de l'outil dans Allkin, ou recharger la page, arrête l'écoute.** Ce qui était
   transcrit est déjà enregistré.
 - **Un seul micro pour plusieurs personnes** : quand on se coupe la parole ou qu'on est loin du
   micro, l'attribution se trompe. Un micro de table posé au milieu aide beaucoup.

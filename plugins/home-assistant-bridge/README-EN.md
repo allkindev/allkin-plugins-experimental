@@ -1,6 +1,6 @@
 # Home Assistant bridge
 
-Your agents react to what happens in the house. The plugin stays connected to Home Assistant's
+Your agents react to what happens in the house. The tool stays connected to Home Assistant's
 websocket and applies **rules**: when an entity reaches a state (or an event happens), it wakes the
 agent of your choice with the message you wrote. The agent's answer comes back into Home
 Assistant, as a persistent notification or on your phone.
@@ -8,7 +8,7 @@ Assistant, as a persistent notification or on your phone.
 ## Getting started
 
 1. In Home Assistant: **Profile → Security → Long-lived access tokens → Create token**.
-2. Paste Home Assistant's address and the token in the plugin's settings.
+2. Paste Home Assistant's address and the token in the tool's settings.
 3. Write your rules, one per line.
 4. Grant the two rights, tick **Allow starting as a service**, save.
 

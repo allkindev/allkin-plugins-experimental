@@ -9,8 +9,8 @@ billed by use.
 
 1. **Services › Add › Soniox**: paste the API key created on
    [console.soniox.com](https://console.soniox.com). It is the same step as for an image service:
-   the key is kept by Allkin, not by the plugin.
-2. On the plugin's page, grant the **Network** right, pick that service in **Audio service** and
+   the key is kept by Allkin, not by the tool.
+2. On the tool's page, grant the **Network** right, pick that service in **Audio service** and
    the **spoken language** (given, it improves recognition).
 3. Tick **Allow it to start as a service**, then save.
 4. **Open the page**, press **Start listening** and allow the microphone when the browser asks.
@@ -59,12 +59,12 @@ Pressing **Start listening** while a transcript is on screen starts a new one.
 
 The key of the audio service never leaves Allkin. For each session, the page asks Allkin for a
 **temporary key** (two minutes, the time to open the connection); the audio then goes from the
-browser straight to the service, without passing through Allkin's machine. The plugin itself sees
+browser straight to the service, without passing through Allkin's machine. The tool itself sees
 no key: its service only serves the page and keeps the transcripts.
 
 ## Limits
 
-- **Closing the plugin's tab in Allkin, or reloading the page, ends the listening.** What was
+- **Closing the tool's tab in Allkin, or reloading the page, ends the listening.** What was
   transcribed is already saved.
 - **One microphone for several people**: when people talk over each other or sit far from the
   microphone, attribution goes wrong. A table microphone in the middle helps a lot.

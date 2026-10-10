@@ -9,8 +9,8 @@ Erkennung übernimmt ein mit Allkin verbundener **Audiodienst** — derzeit
 
 1. **Dienste › Hinzufügen › Soniox**: den auf [console.soniox.com](https://console.soniox.com)
    erstellten API-Schlüssel einfügen. Es ist derselbe Schritt wie bei einem Bilddienst: Den
-   Schlüssel verwahrt Allkin, nicht das Plugin.
-2. Auf der Seite des Plugins das Recht **Netzwerk** gewähren, diesen Dienst unter **Audiodienst**
+   Schlüssel verwahrt Allkin, nicht das Tool.
+2. Auf der Seite des Tools das Recht **Netzwerk** gewähren, diesen Dienst unter **Audiodienst**
    wählen und die **gesprochene Sprache** (angegeben verbessert sie die Erkennung).
 3. **Start als Dienst erlauben** ankreuzen, dann speichern.
 4. **Seite öffnen**, **Zuhören** drücken und das Mikrofon erlauben, wenn der Browser fragt.
@@ -60,12 +60,12 @@ seine HTTPS-Adresse (`tailscale serve`, Caddy…). Die Seite sagt es, wenn das d
 
 Der Schlüssel des Audiodienstes verlässt Allkin nicht. Für jede Sitzung bittet die Seite Allkin um
 einen **temporären Schlüssel** (zwei Minuten, die Zeit, die Verbindung zu öffnen); der Ton geht
-danach vom Browser direkt zum Dienst, ohne über die Maschine von Allkin zu laufen. Das Plugin
+danach vom Browser direkt zum Dienst, ohne über die Maschine von Allkin zu laufen. Das Tool
 selbst sieht keinen Schlüssel: Sein Dienst liefert nur die Seite aus und verwahrt die Transkripte.
 
 ## Grenzen
 
-- **Den Tab des Plugins in Allkin zu schließen oder die Seite neu zu laden, beendet das Zuhören.**
+- **Den Tab des Tools in Allkin zu schließen oder die Seite neu zu laden, beendet das Zuhören.**
   Das bereits Transkribierte ist gespeichert.
 - **Ein Mikrofon für mehrere Personen**: Wenn man sich ins Wort fällt oder weit vom Mikrofon sitzt,
   stimmt die Zuordnung nicht. Ein Tischmikrofon in der Mitte hilft sehr.

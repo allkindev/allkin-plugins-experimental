@@ -9,7 +9,7 @@ réponse dans le chat. Quand l'agent veut lancer une commande, elle arrive avec 
 
 1. Dans Telegram, écris à **@BotFather** : `/newbot`, un nom, un identifiant. Il te donne le
    **jeton** du bot.
-2. Colle le jeton dans les réglages du plugin, puis écris ton **identifiant Telegram** dans
+2. Colle le jeton dans les réglages de l'outil, puis écris ton **identifiant Telegram** dans
    « Utilisateurs autorisés » (si tu ne le connais pas : enregistre d'abord avec une liste vide
    de quelqu'un d'autre, écris au bot, il te répond ton identifiant ; ou demande-le à
    **@userinfobot**).
@@ -27,7 +27,7 @@ réponse dans le chat. Quand l'agent veut lancer une commande, elle arrive avec 
 | `/new`        | repart sur une conversation vierge avec le même agent        |
 | `/who`        | l'agent et la conversation de ce chat                        |
 
-Chaque chat Telegram garde sa conversation : elle survit aux redémarrages du plugin et
+Chaque chat Telegram garde sa conversation : elle survit aux redémarrages de l'outil et
 d'Allkin, et se retrouve dans l'historique de l'agent, dans l'interface. Une photo ou un fichier
 envoyé au bot est déposé dans le dossier **Upload** de l'agent, qui en est informé.
 
@@ -39,7 +39,7 @@ envoyé au bot est déposé dans le dossier **Upload** de l'agent, qui en est in
   sont annulés avec un mot d'explication.
 - Les validations de commandes depuis Telegram peuvent être coupées dans les réglages : les
   commandes sont alors refusées d'office.
-- Le plugin ne parle qu'à `api.telegram.org`, sauf si tu pointes un serveur Bot API à toi.
+- L'outil ne parle qu'à `api.telegram.org`, sauf si tu pointes un serveur Bot API à toi.
 
 ## Droits
 
